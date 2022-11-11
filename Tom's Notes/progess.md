@@ -25,3 +25,9 @@ I have installed the following:
 
 After several hours of tinkering and troubleshooting, I have managed to package the deafult vr demo in unreal engine and upload it to the Quest headset!
 
+This tutorial helped a lot:
+
+https://www.youtube.com/watch?v=TXQhGjVZJ-8
+
+
+
