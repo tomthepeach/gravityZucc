@@ -1,6 +1,6 @@
 # %%
 from initialise import initialise_bodies
-from plot import animate_bodies
+from plot import plot_bodies
 from numpy import array, append
 
 
@@ -14,6 +14,7 @@ if __name__ == '__main__':
     print (f"Duration: {tsteps*delta_t} Timestep: {delta_t}")
     
     bodies = initialise_bodies(100, dimensions=bounds)
+    plot_bodies(bodies)
     t = 0
     time_array = array([])
     
@@ -29,7 +30,7 @@ if __name__ == '__main__':
         t += 1
 
     print ("Simulation complete")
-    animate_bodies(bodies)
+    plot_bodies(bodies)
 
 
 

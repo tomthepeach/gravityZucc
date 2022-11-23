@@ -1,4 +1,5 @@
 from numpy import array, append
+from octree import Octree
 
 class Body:
     def __init__(self, idx: int, pos: array, vel: array, mass=1.0):
@@ -16,5 +17,8 @@ class Body:
 
     def update_position(self, tstep, bounds):
         self.pos = (self.pos + self.vel*tstep) % bounds
+
+    def update_velocity(self, octree):
+        self.vel = self.vel + force/self.mass
 
         
