@@ -14,7 +14,7 @@ class Body:
         for i in range(3):
             self.pos_data[i] = append(self.pos_data[i], self.pos[i])
             self.vel_data[i] = append(self.vel_data[i], self.vel[i])
-
+    
     def update_position(self, tstep, bounds):
         self.pos = (self.pos + self.vel*tstep) % bounds
 
