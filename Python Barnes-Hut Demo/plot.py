@@ -26,18 +26,7 @@ def animate_bodies(bodies):
 
 
     graph = ax.scatter([], [], [], c='r', marker='o')
-    def update_graph(num):
-        xs = []
-        ys = []
-        zs = []    
-        for body in bodies:
-            xs.append(body.pos_data[0][num])
-            ys.append(body.pos_data[1][num])
-            zs.append(body.pos_data[2][num])
-
-        graph._offsets3d = (xs, ys, zs)
-
-        
+    def update_graph(num):refusing to merge unrelated histories
     ani = animation.FuncAnimation(fig, update_graph, frames = len(bodies[0].pos_data[0]), interval=40, blit=False)
 
     ani.save('test.gif', writer='imagemagick', fps=5)
