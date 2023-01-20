@@ -38,4 +38,8 @@ I have found some post processing effects I'm interested in applying to our proj
 https://github.com/GarrettGunnell/Post-Processing
 
 
+Decided to spawn a galaxy as the base of the simulation, idea is to use a greayscale image of a galaxy to represent a proabablitity density, then write a function that converts this image to an array and randomly spawns stars in the simulation space according to this probability density.
+
+Currently creating a skybox for the project using deep field images from the hubbles space telescope for realism, have cut out a cube map from the raw images and will see if it needs editing to remove seams once I've loaded in as a skybox
+
 
