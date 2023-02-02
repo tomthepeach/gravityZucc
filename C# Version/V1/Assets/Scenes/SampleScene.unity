@@ -237,8 +237,8 @@ MonoBehaviour:
   starCount: 100000
   numRounds: 1
   y_range: 1000
-  galaxyNoise: 2000
-  galaxyRadius: 10000
+  galaxyNoise: 3000
+  galaxyRadius: 1000
 --- !u!114 &1806515168
 MonoBehaviour:
   m_ObjectHideFlags: 0

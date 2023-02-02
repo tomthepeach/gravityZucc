@@ -11,13 +11,15 @@ GameObject:
   - component: {fileID: 1727692848951394983}
   - component: {fileID: 8313750357572656745}
   - component: {fileID: 6755883214383053375}
-  - component: {fileID: -7408423972544264157}
+  - component: {fileID: 6612194327952728597}
+  - component: {fileID: 6177060937734844285}
+  - component: {fileID: -8678735690606926734}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &1727692848951394983
 Transform:
@@ -27,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3910284366748954017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -132, y: -122.6, z: 745}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,7 +86,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-7408423972544264157
+--- !u!135 &6612194327952728597
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910284366748954017}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6177060937734844285
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910284366748954017}
+  serializedVersion: 2
+  m_Mass: 50000
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &-8678735690606926734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,14 +124,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3910284366748954017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f540ec1f5e230f34f90ec85c64ef8706, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bbb6b69c8e909d4bbd868bcbe041398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  netForce: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  ke: 0
-  pe: 0
-  blackhole: 0
-  bigG: 1
-  mass: 1
-  scale: 0.001
+  bigG: 1.2e+19
+  mass: 0
+  initialVelocity: {x: 0, y: 0, z: 0}
+  currentVelocity: {x: 0, y: 0, z: 0}
+  radius: 0

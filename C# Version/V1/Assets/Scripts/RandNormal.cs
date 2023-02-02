@@ -1,6 +1,7 @@
 using Random = UnityEngine.Random;
+using Mathf = UnityEngine.Mathf;
 
-public static class RandomNormal
+public class RandomNormal
 {
     public float value(float mean = 0.0f, float stdDev = 1.0f)
     {
