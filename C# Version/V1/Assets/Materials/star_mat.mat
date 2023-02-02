@@ -37,7 +37,6 @@ Material:
     m_Floats:
     - _CellDensity: 250
     - _Flares: 20
-    - _Luminosity: 5
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

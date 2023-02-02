@@ -14,7 +14,7 @@ public class Instantiate_galaxy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < starCount/2; i++)
         {
             float scaler = Random.value;
             float inpmass = 1 + scaler * 1700;
@@ -25,10 +25,10 @@ public class Instantiate_galaxy : MonoBehaviour
             // star_i.GetComponent<Rigidbody>().mass = inpmass;
             // star_i.GetComponent<Rigidbody>().velocity = inpinitialVelocity;
 
-            float theta = ((2 * Mathf.PI * i) / starCount) * numRounds ;
+            float theta = ((4 * Mathf.PI * i) / starCount) * numRounds ;
             float r = theta * theta;
-            float x = galaxyNoise * r * Mathf.Cos(theta);
-            float z = galaxyNoise * r * Mathf.Sin(theta);
+            float x = galaxyRadius * r * Mathf.Cos(theta);
+            float z = galaxyRadius * r * Mathf.Sin(theta);
 
             Vector3 pos;
             pos.x = x + Random.Range(-galaxyNoise, galaxyNoise);
