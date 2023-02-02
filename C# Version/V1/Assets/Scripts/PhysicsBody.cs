@@ -6,19 +6,25 @@ using UnityEngine;
 public class PhysicsBody : MonoBehaviour 
 {
 
-    public float radius;
     public float bigG = 1.2E19f;
-
-    public Vector3 currentVelocity { get; private set; }
-
-    public Vector3 velocity { get; private set; }
     Rigidbody _rb;
+    public float mass;
+    public Vector3 initialVelocity;
+    public Vector3 currentVelocity;
+    public float radius;
+
+    public void Init(float inpmass, Vector3 inpinitialVelocity, float inpradius)
+    {
+        mass = inpmass;
+        initialVelocity = inpinitialVelocity;
+        radius = inpradius;
+    }
 
     void Start ()
     {
         _rb = GetComponent<Rigidbody> ();
-        // _rb.velocity = new Vector3 (Random.Range (-100, 100), Random.Range (-100, 100), Random.Range (-100, 100));
-        _rb.mass = Random.Range (1, 1700);
+        _rb.mass = mass;
+        currentVelocity = initialVelocity;
     }
 
     public void UpdateVelocity(PhysicsBody[] Bodies, float timestep)
@@ -29,16 +35,24 @@ public class PhysicsBody : MonoBehaviour
             {
                 Vector3 direction = otherbody._rb.position - _rb.position;
                 float radius = direction.magnitude;
-                Vector3 force = ( bigG * _rb.mass * otherbody._rb.mass * direction.normalized) / (radius*radius);
-                _rb.velocity += force * timestep;
+                Vector3 acceleration = ( bigG  * otherbody._rb.mass * direction.normalized) / (radius*radius);
+                currentVelocity += acceleration * timestep;
             }   
         }
     }
 
     public void UpdatePosition (float timeStep) 
     {
-        _rb.MovePosition (_rb.position + _rb.velocity * timeStep);
+        _rb.MovePosition (_rb.position + currentVelocity * timeStep);
     }
+
+
+    // void OnValidate () {
+    //     mass = surfaceGravity * radius * radius / Universe.gravitationalConstant;
+    //     meshHolder = transform.GetChild (0);
+    //     meshHolder.localScale = Vector3.one * radius;
+    //     gameObject.name = bodyName;
+    // }
 
     public Rigidbody Rigidbody {
         get {
@@ -46,5 +60,10 @@ public class PhysicsBody : MonoBehaviour
         }
     }
 
-    public Vector3 Position {get {return _rb.position;}}
+    public Vector3 Position {
+        get {
+            return _rb.position;
+        }
+    }
+
 }

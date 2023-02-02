@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Instantiate_galaxy : MonoBehaviour
 {
@@ -10,8 +11,21 @@ public class Instantiate_galaxy : MonoBehaviour
     {
         for (int i = 0; i < 1000; i++)
         {
-            Instantiate(Star, new Vector3(Random.Range(-10000, 10000), Random.Range(-10000, 10000), Random.Range(-100, 100)), Quaternion.identity);
-        }
+            GameObject star_i;
+            star_i = Instantiate(Star, Random.insideUnitSphere*1000, Quaternion.identity);
+
+            float scaler = Random.value;
+            float inpmass = 1 + scaler * 1700;
+
+            Vector3 inpinitialVelocity = Random.insideUnitSphere*100;
+            Vector3 inpradius = Vector3.one + Vector3.one*17*scaler;
+
+            star_i.GetComponent<Rigidbody>().mass = inpmass;
+            star_i.GetComponent<Rigidbody>().velocity = inpinitialVelocity;
+            star_i.transform.localScale = inpradius;
+
+            // star_i.PhysicsBody.Init(inpmass, inpinitialVelocity, inpradius);
+        }   
 
     }
 

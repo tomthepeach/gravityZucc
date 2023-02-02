@@ -42,4 +42,12 @@ Decided to spawn a galaxy as the base of the simulation, idea is to use a greays
 
 Currently creating a skybox for the project using deep field images from the hubbles space telescope for realism, have cut out a cube map from the raw images and will see if it needs editing to remove seams once I've loaded in as a skybox
 
+The skybox was deniosed and de seamed and now looks great.
 
+Wrote a shader script for stars, started wrrting code to spawn large numbers suing 'prefabs'.
+
+This script will eventually (once implemented) use an actual picture of a gaalxy to determine where to spawn stars.
+
+Im going to normalise the possible star masses to the the smallest which is 0.9 solar masses, and largest 150 solar masses
+
+In terms of  size they range from 0.7 solar radii to 6.6 solar radii
