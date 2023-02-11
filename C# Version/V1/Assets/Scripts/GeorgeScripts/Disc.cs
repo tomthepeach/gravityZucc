@@ -15,7 +15,7 @@ public class Disc : MonoBehaviour
     void Awake()
     {
         
-        for (int i = 0; i < spawnCount; i++)
+        for (int i = 0; i < starCount; i++)
         {
             
             float x = gaussian.value(transform.position.x,sigma);

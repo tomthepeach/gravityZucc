@@ -6,11 +6,13 @@ using Random = UnityEngine.Random;
 public class Instantiate_galaxy : MonoBehaviour
 {
     public GameObject Star;
+    public RandomNormal gaussian = new RandomNormal();
     public int starCount = 1000;
     public float numRounds = 1.0f;
     public int y_range = 10;
     public int galaxyNoise = 10;
     public float galaxyRadius = 1000.0f;
+    public float stdDev = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,15 +28,15 @@ public class Instantiate_galaxy : MonoBehaviour
             // star_i.GetComponent<Rigidbody>().mass = inpmass;
             // star_i.GetComponent<Rigidbody>().velocity = inpinitialVelocity;
 
-            float theta = ((2 * 2 * Mathf.PI * i) / starCount) * numRounds ;
+            float theta = ((2 * 2 * Mathf.PI * i) / starCount) * numRounds;
             float r = theta * theta;
             float x = galaxyRadius * r * Mathf.Cos(theta);
             float z = galaxyRadius * r * Mathf.Sin(theta);
-
             Vector3 pos;
+
             pos.x = x + Random.Range(-galaxyNoise, galaxyNoise);
             pos.z = z + Random.Range(-galaxyNoise, galaxyNoise);
-            pos.y = Random.Range(-y_range, y_range); //Dont want a flat top -Use gaussian
+            pos.y = Random.Range(-y_range, y_range); //dont want a flat top -use gaussian
 
             GameObject star1 = Instantiate(Star);
             star1.transform.position = pos;
@@ -47,6 +49,22 @@ public class Instantiate_galaxy : MonoBehaviour
             GameObject star2 = Instantiate(Star);
             star2.transform.position = pos;
             star2.transform.localScale = starRadius;
+
+            pos.x = galaxyRadius * gaussian.value(transform.position.x, stdDev);
+            pos.z = galaxyRadius * gaussian.value(transform.position.z, stdDev);
+            pos.y = Random.Range(-y_range, y_range); //Flat top once again.
+
+            GameObject star3 = Instantiate(Star);
+            star3.transform.position = pos;
+            star3.transform.localScale = starRadius;
+
+            pos.x = galaxyRadius * gaussian.value(transform.position.x, stdDev);
+            pos.z = galaxyRadius * gaussian.value(transform.position.z, stdDev);
+            pos.y = Random.Range(-y_range, y_range); //Flat top once again.
+
+            GameObject star4 = Instantiate(Star);
+            star4.transform.position = pos;
+            star4.transform.localScale = starRadius;
 
 
             // star_i.PhysicsBody.Init(inpmass, inpinitialVelocity, inpgalaxyNoise);
