@@ -27,7 +27,7 @@ public class NBodySimulation : MonoBehaviour
         foreach (Body body in bodies)
         {
             // Debug.Log("update pos");
-            body.UpdateVelocity(bodies, Time.fixedDeltaTime);
+            body.UpdatePosition(Time.fixedDeltaTime);
         }
     }
 }

@@ -9,7 +9,7 @@ public class Body : MonoBehaviour
 	public Vector3 velocity = Vector3.zero;
 
 
-	public float bigG = 1.2E19f;
+	public float bigG = 6.67E-11f;
 	public float mass;
 	public float scale;
 
@@ -63,7 +63,7 @@ public class Body : MonoBehaviour
 				// dir 
 				Vector3 dir = Vector3.Normalize(_body.transform.position - transform.position);
 
-				Vector3 F = (dir * F_amp) * timestep;
+				Vector3 F = (dir * F_amp);
 				netForce += F;
 
 			}
@@ -71,15 +71,15 @@ public class Body : MonoBehaviour
 
 		netForce *= bigG;
 		// Debug.Log(netForce);
-		// velocity += netForce * Time.fixedDeltaTime;
-		velocity = Vector3.one;
+		velocity += netForce * Time.fixedDeltaTime;
+		// velocity = Vector3.one;
 		netForce = Vector3.zero;
-
+	
 	}
 
 	public void UpdatePosition(float timeStep)
 	{
-		Debug.Log(velocity);
+		// Debug.Log(velocity);
 		transform.Translate(velocity);
 	}
 }
