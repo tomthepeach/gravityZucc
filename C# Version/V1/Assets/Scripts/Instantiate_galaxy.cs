@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class Instantiate_galaxy : MonoBehaviour
 {
-    public GameObject Star;
+    public GameObject Body;
     public RandomNormal gaussian = new RandomNormal();
     public int starCount = 1000;
     public float numRounds = 1.0f;
@@ -38,14 +38,14 @@ public class Instantiate_galaxy : MonoBehaviour
             pos.z = z + Random.Range(-galaxyNoise, galaxyNoise);
             pos.y = Random.Range(-y_range, y_range); //dont want a flat top -use gaussian
 
-            GameObject star1 = Instantiate(Star);
+            GameObject star1 = Instantiate(Body);
             star1.transform.position = pos;
 
             pos.x = -x + Random.Range(-galaxyNoise, galaxyNoise);
             pos.z = -z + Random.Range(-galaxyNoise, galaxyNoise);
             pos.y = Random.Range(-y_range, y_range);
 
-            GameObject star2 = Instantiate(Star);
+            GameObject star2 = Instantiate(Body);
             star2.transform.position = pos;
             star2.transform.localScale = starRadius;
             star2.mass = inpmass;
@@ -55,7 +55,7 @@ public class Instantiate_galaxy : MonoBehaviour
             pos.z = galaxyRadius * gaussian.value(transform.position.z, stdDev);
             pos.y = Random.Range(-y_range, y_range); //Flat top once again.
 
-            GameObject star3 = Instantiate(Star);
+            GameObject star3 = Instantiate(Body);
             star3.transform.position = pos;
             star3.transform.localScale = starRadius;
             star3.mass = inpmass;
@@ -64,7 +64,7 @@ public class Instantiate_galaxy : MonoBehaviour
             pos.z = galaxyRadius * gaussian.value(transform.position.z, stdDev);
             pos.y = Random.Range(-y_range, y_range); //Flat top once again.
 
-            GameObject star4 = Instantiate(Star);
+            GameObject star4 = Instantiate(Body);
             star4.transform.position = pos;
             star4.transform.localScale = starRadius;
             star4.mass = inpmass;
