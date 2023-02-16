@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+
 public class Body : MonoBehaviour
 {
+	public Vector3 netForce = Vector3.zero;
+	public Vector3 velocity = Vector3.zero;
 
-	private const float GRAVITY_CONST = 600;
+
+	private const float GRAVITY_CONST = 1f;
+	public float mass = 1f;
+	public static float scale = 1f;
+
+	public Vector3 scale3D = Vector3.one * scale;
 
 	public static List<Body> Bodies;
 
-	public Rigidbody rb { get; protected set; }
 
 	// Use this for initialization
 	void Start()
@@ -19,32 +25,64 @@ public class Body : MonoBehaviour
 			Bodies = new List<Body>();
 
 		Bodies.Add(this);
-
-		rb = GetComponent<Rigidbody>();
+		
 	}
 
 	// Update is called once per frame
 	void FixedUpdate()
 	{
+
+
+		foreach (Body _body in Bodies.ToArray())
+		{
+			if (_body == this)
+				continue;
+
+			// distance between bodies
+			float r = Vector3.Distance(transform.position, _body.transform.position);
+
+			if (r < scale)
+			{
+				mass += _body.mass;
+				transform.Translate((_body.transform.position - transform.position) / 2);
+				Debug.Log("Here");
+				velocity += _body.velocity;
+				// size 
+
+				Destroy(_body.gameObject, 0);
+				Bodies.Remove(_body);
+
+			}
+		}
+
+
+
 		foreach (Body _body in Bodies)
 		{
 			if (_body == this)
 				continue;
 
-			float m1 = rb.mass;
-			float m2 = _body.rb.mass;
-
+			// distance between bodies
 			float r = Vector3.Distance(transform.position, _body.transform.position);
 
-			float F_amp = (m1 * m2) / Mathf.Pow(r, 2);
-			F_amp *= GRAVITY_CONST;
 
+			// part of grav formula
+			float F_amp = (mass * _body.mass) / Mathf.Pow(r, 2);
+			
+			// dir 
 			Vector3 dir = Vector3.Normalize(_body.transform.position - transform.position);
 
 			Vector3 F = (dir * F_amp) * Time.fixedDeltaTime;
-			//Debug.Log ("Force: " + F);
-			rb.AddForce(F);
+			netForce += F;
 
 		}
+
+
+		netForce *= GRAVITY_CONST;
+
+		velocity += netForce * Time.fixedDeltaTime;
+
+		transform.Translate(velocity);
+		netForce = Vector3.zero;
 	}
 }

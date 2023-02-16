@@ -78,3 +78,66 @@ public class Instantiate_galaxy : MonoBehaviour
         
     }
 }
+
+/*
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Spawner : MonoBehaviour
+{
+	public GameObject obj;
+	public int spawnCount = 100;
+
+	public float numRounds = 1.0f;
+	public int y_range = 10;
+	public int noise = 10;
+	public float radius = 1.0f;
+	public float speed = 1.0f;
+
+	void Awake()
+	{
+		
+		//Double spiral
+		for (int i = 0; i < spawnCount/2; i++)
+		{
+			float theta = ((2 * Mathf.PI * i) / spawnCount) * numRounds;
+			float r = theta * theta;
+			float x = radius * r * Mathf.Cos(theta);
+			float z = radius * r * Mathf.Sin(theta);
+
+			Vector3 pos;
+			pos.x = x + Random.Range(-noise, noise);
+			pos.z = z + Random.Range(-noise, noise);
+			pos.y = 50 + Random.Range(-y_range, y_range);
+
+
+			GameObject _go = Instantiate(obj, pos, transform.rotation);
+			
+
+		}
+
+		for (int i = 0; i < spawnCount / 2; i++)
+		{
+			float theta = ((2 * Mathf.PI * i) / spawnCount) * numRounds;
+			float r = theta * theta;
+			float x = radius * r * Mathf.Cos(theta);
+			float z = radius * r * Mathf.Sin(theta);
+
+			Vector3 pos;
+			pos.x = -x + Random.Range(-noise, noise);
+			pos.z = -z + Random.Range(-noise, noise);
+			pos.y = 50 + Random.Range(-y_range, y_range);
+
+
+			GameObject _go = Instantiate(obj, pos, transform.rotation);
+
+		}
+
+
+	}
+	
+}
+
+*/
