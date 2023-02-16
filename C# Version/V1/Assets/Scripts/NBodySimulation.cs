@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class NBodySimulation : MonoBehaviour
 {
-    PhysicsBody[] bodies;
+    Body[] bodies;
     // Start is called before the first frame update
     void Awake()
     {
-        bodies = FindObjectsOfType<PhysicsBody>();
+        bodies = toList(FindObjectsOfType<Body>());
         Time.timeScale = 10;
         Time.fixedDeltaTime = 0.02F * Time.timeScale;
 

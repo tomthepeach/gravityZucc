@@ -13,25 +13,12 @@ public class Body : MonoBehaviour
 	public float mass = 1f;
 	public static float scale = 1f;
 
-	public Vector3 scale3D = Vector3.one * scale;
-
-	public static List<Body> Bodies;
-
 
 	// Use this for initialization
-	void Start()
-	{
-		if (Bodies == null)
-			Bodies = new List<Body>();
-
-		Bodies.Add(this);
-		
-	}
 
 	// Update is called once per frame
-	void FixedUpdate()
+	public void UpdateVelocity(List<Body> Bodies, float timestep)
 	{
-
 
 		foreach (Body _body in Bodies.ToArray())
 		{
@@ -45,7 +32,7 @@ public class Body : MonoBehaviour
 			{
 				mass += _body.mass;
 				transform.Translate((_body.transform.position - transform.position) / 2);
-				Debug.Log("Here");
+				// Debug.Log("Here");
 				velocity += _body.velocity;
 				// size 
 
@@ -65,24 +52,23 @@ public class Body : MonoBehaviour
 			// distance between bodies
 			float r = Vector3.Distance(transform.position, _body.transform.position);
 
-
 			// part of grav formula
 			float F_amp = (mass * _body.mass) / Mathf.Pow(r, 2);
 			
 			// dir 
 			Vector3 dir = Vector3.Normalize(_body.transform.position - transform.position);
 
-			Vector3 F = (dir * F_amp) * Time.fixedDeltaTime;
+			Vector3 F = (dir * F_amp) * timestep;
 			netForce += F;
-
 		}
 
-
 		netForce *= GRAVITY_CONST;
-
 		velocity += netForce * Time.fixedDeltaTime;
-
-		transform.Translate(velocity);
 		netForce = Vector3.zero;
+	}
+
+	public void UpdatePosition(float timeStep)
+	{
+		transform.Translate(velocity);
 	}
 }
