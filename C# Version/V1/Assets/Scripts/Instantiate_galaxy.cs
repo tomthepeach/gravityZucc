@@ -40,7 +40,6 @@ public class Instantiate_galaxy : MonoBehaviour
 
             GameObject star1 = Instantiate(Star);
             star1.transform.position = pos;
-            star1.transform.localScale = starRadius;
 
             pos.x = -x + Random.Range(-galaxyNoise, galaxyNoise);
             pos.z = -z + Random.Range(-galaxyNoise, galaxyNoise);
@@ -49,6 +48,8 @@ public class Instantiate_galaxy : MonoBehaviour
             GameObject star2 = Instantiate(Star);
             star2.transform.position = pos;
             star2.transform.localScale = starRadius;
+            star2.mass = inpmass;
+
 
             pos.x = galaxyRadius * gaussian.value(transform.position.x, stdDev);
             pos.z = galaxyRadius * gaussian.value(transform.position.z, stdDev);
@@ -57,6 +58,7 @@ public class Instantiate_galaxy : MonoBehaviour
             GameObject star3 = Instantiate(Star);
             star3.transform.position = pos;
             star3.transform.localScale = starRadius;
+            star3.mass = inpmass;
 
             pos.x = galaxyRadius * gaussian.value(transform.position.x, stdDev);
             pos.z = galaxyRadius * gaussian.value(transform.position.z, stdDev);
@@ -65,6 +67,8 @@ public class Instantiate_galaxy : MonoBehaviour
             GameObject star4 = Instantiate(Star);
             star4.transform.position = pos;
             star4.transform.localScale = starRadius;
+            star4.mass = inpmass;
+
 
 
             // star_i.PhysicsBody.Init(inpmass, inpinitialVelocity, inpgalaxyNoise);

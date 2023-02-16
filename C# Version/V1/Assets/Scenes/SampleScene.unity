@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.001124391, g: 0.0011197547, b: 0.0010976469, a: 1}
+  m_IndirectSpecularColor: {r: 0.001124098, g: 0.0011194715, b: 0.0010973886, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -234,11 +234,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Star: {fileID: 3910284366748954017, guid: 1ba1779268409d14f9b84870b1e0efec, type: 3}
-  starCount: 100000
+  starCount: 1000
   numRounds: 1
   y_range: 1000
   galaxyNoise: 3000
   galaxyRadius: 1000
+  stdDev: 3
 --- !u!114 &1806515168
 MonoBehaviour:
   m_ObjectHideFlags: 0

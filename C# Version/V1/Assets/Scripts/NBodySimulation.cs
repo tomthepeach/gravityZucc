@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class NBodySimulation : MonoBehaviour
 {
-    Body[] bodies;
+    
+    List<Body> bodies;
     // Start is called before the first frame update
     void Awake()
     {
-        bodies = toList(FindObjectsOfType<Body>());
-        Time.timeScale = 10;
-        Time.fixedDeltaTime = 0.02F * Time.timeScale;
+        Body[] bodyarr = FindObjectsOfType<Body>();
+        bodies = new List<Body>(bodyarr);
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        for (int i = 0; i < bodies.Length; i++)
+        foreach (Body body in bodies)
         {
-            bodies[i].UpdateVelocity(bodies, Time.fixedDeltaTime);
+            body.UpdateVelocity(bodies, Time.fixedDeltaTime);
         }
-        for (int i = 0; i < bodies.Length; i++)
+
+        foreach (Body body in bodies)
         {
-            bodies[i].UpdatePosition(Time.fixedDeltaTime);
+            body.UpdateVelocity(bodies, Time.fixedDeltaTime);
         }
     }
 }

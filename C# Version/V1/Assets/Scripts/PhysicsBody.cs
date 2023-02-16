@@ -12,7 +12,7 @@ public class PhysicsBody : MonoBehaviour
     public Vector3 velocity = Vector3.zero;
     public float radius;
 
-    public void Init(float inpmass, Vector3 inpinitialVelocity, float inpradius)
+    public void Init(float inpmass, float inpradius, Vector3 inpinitialVelocity= new Vector3(0,0,0))
     {
         mass = inpmass;
         initialVelocity = inpinitialVelocity;
