@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class Instantiate_galaxy : MonoBehaviour
 {
-    public GameObject Body;
+    public GameObject starPrefab;
     public RandomNormal gaussian = new RandomNormal();
     public int starCount = 1000;
     public float numRounds = 1.0f;
@@ -38,36 +38,36 @@ public class Instantiate_galaxy : MonoBehaviour
             pos.z = z + Random.Range(-galaxyNoise, galaxyNoise);
             pos.y = Random.Range(-y_range, y_range); //dont want a flat top -use gaussian
 
-            GameObject star1 = Instantiate(Body);
+            GameObject star1 = Instantiate(starPrefab);
             star1.transform.position = pos;
+            star1.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius);
 
             pos.x = -x + Random.Range(-galaxyNoise, galaxyNoise);
             pos.z = -z + Random.Range(-galaxyNoise, galaxyNoise);
             pos.y = Random.Range(-y_range, y_range);
 
-            GameObject star2 = Instantiate(Body);
+            GameObject star2 = Instantiate(starPrefab);
             star2.transform.position = pos;
-            star2.transform.localScale = starRadius;
-            star2.mass = inpmass;
-
+            star2.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius);
+            
 
             pos.x = galaxyRadius * gaussian.value(transform.position.x, stdDev);
             pos.z = galaxyRadius * gaussian.value(transform.position.z, stdDev);
             pos.y = Random.Range(-y_range, y_range); //Flat top once again.
 
-            GameObject star3 = Instantiate(Body);
+            GameObject star3 = Instantiate(starPrefab);
             star3.transform.position = pos;
-            star3.transform.localScale = starRadius;
-            star3.mass = inpmass;
+            star3.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius);
+
 
             pos.x = galaxyRadius * gaussian.value(transform.position.x, stdDev);
             pos.z = galaxyRadius * gaussian.value(transform.position.z, stdDev);
             pos.y = Random.Range(-y_range, y_range); //Flat top once again.
 
-            GameObject star4 = Instantiate(Body);
+            GameObject star4 = Instantiate(starPrefab);
             star4.transform.position = pos;
-            star4.transform.localScale = starRadius;
-            star4.mass = inpmass;
+            star4.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius);
+
 
 
 
