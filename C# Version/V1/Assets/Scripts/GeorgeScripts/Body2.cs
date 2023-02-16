@@ -1,0 +1,65 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody))]
+public class Body : MonoBehaviour
+{
+
+	private const float GRAVITY_CONST = 600;
+
+	public static List<Body> Bodies;
+
+	public Rigidbody rb { get; protected set; }
+
+	// Use this for initialization
+	void Start()
+	{
+		if (Bodies == null)
+			Bodies = new List<Body>();
+
+		Bodies.Add(this);
+
+		rb = GetComponent<Rigidbody>();
+	}
+
+	// Update is called once per frame
+	void FixedUpdate()
+	{
+		foreach (Body _body in Bodies)
+		{
+			if (_body == this)
+				continue;
+
+			/*
+			private void OnTriggerEnter(_body)
+            {
+				float new_mass = rb.mass + _body.rb.mass;
+				Vector3 new_pos = (transform.poisition + _body.transform.position) / 2;
+				// float new_size = ....;
+
+				// need to init the new larger body and add to Bodies
+				// need to remove the two previous bodies from game and list
+				// this may have some effect on energy conservation
+
+            };
+			*/
+
+			float m1 = rb.mass;
+			float m2 = _body.rb.mass;
+
+			float r = Vector3.Distance(transform.position, _body.transform.position);
+
+			float F_amp = (m1 * m2) / Mathf.Pow(r, 2);
+			F_amp *= GRAVITY_CONST;
+
+			Vector3 dir = Vector3.Normalize(_body.transform.position - transform.position);
+
+			Vector3 F = (dir * F_amp) * Time.fixedDeltaTime;
+			//Debug.Log ("Force: " + F);
+			rb.AddForce(F);
+
+		}
+
+	}
+}
