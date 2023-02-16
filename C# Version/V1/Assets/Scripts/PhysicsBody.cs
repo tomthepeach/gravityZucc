@@ -7,10 +7,9 @@ public class PhysicsBody : MonoBehaviour
 {
 
     public float bigG = 1.2E19f;
-    Rigidbody _rb;
     public float mass;
-    public Vector3 initialVelocity;
-    public Vector3 currentVelocity;
+    public Vector3 netForce = Vector3.zero;
+    public Vector3 velocity = Vector3.zero;
     public float radius;
 
     public void Init(float inpmass, Vector3 inpinitialVelocity, float inpradius)
