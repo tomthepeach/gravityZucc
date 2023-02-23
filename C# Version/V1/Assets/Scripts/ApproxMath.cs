@@ -1,9 +1,10 @@
 using Random = UnityEngine.Random;
 using Mathf = UnityEngine.Mathf;
+using System;
 
 public class ApproxMath
 {
-    public float gaussian(float mean = 0.0f, float stdDev = 1.0f)
+    public static float gaussian(float mean = 0.0f, float stdDev = 1.0f)
     {
         //Box-Muller transform
         float u1 = 1.0f - Random.value; //uniform(0,1] random doubles

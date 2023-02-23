@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 public class Instantiate_galaxy : MonoBehaviour
 {
     public GameObject starPrefab;
-    public RandomNormal gaussian = new RandomNormal();
     public int starCount = 1000;
     public float numRounds = 1.0f;
     public int y_range = 10;
