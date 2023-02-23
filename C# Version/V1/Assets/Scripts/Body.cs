@@ -28,39 +28,6 @@ public class Body : MonoBehaviour
 	// Update is called once per frame
 	public void UpdateVelocity(List<Body> Bodies, float timestep)
 	{
-		/*
-		List<Body> to_destroy = new List<Body>();
-		foreach (Body _body in Bodies.ToArray())
-
-		//for (int i=0; i<Bodies.Length; i++)
-		{
-			//Body _body = Bodies[i];
-			if (_body != this)
-			{
-				// distance between bodies
-				float r = Vector3.Distance(transform.position, _body.transform.position);
-
-				if (r < scale)
-				{
-					mass += _body.mass;
-					transform.Translate((_body.transform.position - transform.position) / 2);
-					
-					velocity += _body.velocity;
-
-					to_destroy.Add(_body);
-					
-				}
-			}
-		}
-
-		foreach (Body _body in to_destroy)
-        {
-			Bodies.Remove(_body);
-			Destroy(_body.gameObject, 0);
-			
-
-		}
-		*/
 
 		foreach (Body _body in Bodies)
 		{
