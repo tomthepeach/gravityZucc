@@ -15,7 +15,6 @@ public class Body : MonoBehaviour
 
 	public void init(float inpmass, Vector3 inpinitialVelocity, Vector3 inpscale)
 	{
-
 		/*
 		mass = inpmass;
 		velocity = inpinitialVelocity;
@@ -23,7 +22,6 @@ public class Body : MonoBehaviour
 		transform.localScale = inpscale;
 		*/
 	}
-	// Use this for initialization
 
 	// Update is called once per frame
 	public void UpdateVelocity(List<Body> Bodies, float timestep)
@@ -44,7 +42,6 @@ public class Body : MonoBehaviour
 
 				Vector3 F = (dir * F_amp);
 				netForce += F;
-
 			}
 		}
 

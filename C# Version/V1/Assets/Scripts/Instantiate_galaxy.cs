@@ -11,22 +11,17 @@ public class Instantiate_galaxy : MonoBehaviour
     public float numRounds = 1.0f;
     public int y_range = 10;
     public int galaxyNoise = 10;
-    public float galaxyRadius = 1000.0f;
     public float stdDev = 3f;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < starCount/2; i++)
+        for (int i = 0; i < starCount/4; i++)
         {
             float scaler = Random.value;
             float inpmass = 1 + scaler * 1700;
 
-            // Vector3 initialVelocity = Random.insideUnitSphere*100;
             Vector3 starRadius = Vector3.one + Vector3.one*17*scaler;
-
-            // star_i.GetComponent<Rigidbody>().mass = inpmass;
-            // star_i.GetComponent<Rigidbody>().velocity = inpinitialVelocity;
 
             float theta = ((2 * 2 * Mathf.PI * i) / starCount) * numRounds;
             float r = theta * theta;
@@ -36,7 +31,7 @@ public class Instantiate_galaxy : MonoBehaviour
 
             pos.x = x + Random.Range(-galaxyNoise, galaxyNoise);
             pos.z = z + Random.Range(-galaxyNoise, galaxyNoise);
-            pos.y = Random.Range(-y_range, y_range); //dont want a flat top -use gaussian
+            pos.y = Random.Range(-y_range, y_range);
 
             GameObject star1 = Instantiate(starPrefab);
             star1.transform.position = pos;
@@ -50,10 +45,9 @@ public class Instantiate_galaxy : MonoBehaviour
             star2.transform.position = pos;
             star2.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius);
             
-
             pos.x = galaxyRadius * gaussian.value(transform.position.x, stdDev);
             pos.z = galaxyRadius * gaussian.value(transform.position.z, stdDev);
-            pos.y = Random.Range(-y_range, y_range); //Flat top once again.
+            pos.y = Random.Range(-y_range, y_range);
 
             GameObject star3 = Instantiate(starPrefab);
             star3.transform.position = pos;
@@ -62,95 +56,12 @@ public class Instantiate_galaxy : MonoBehaviour
 
             pos.x = galaxyRadius * gaussian.value(transform.position.x, stdDev);
             pos.z = galaxyRadius * gaussian.value(transform.position.z, stdDev);
-            pos.y = Random.Range(-y_range, y_range); //Flat top once again.
+            pos.y = Random.Range(-y_range, y_range); 
 
             GameObject star4 = Instantiate(starPrefab);
             star4.transform.position = pos;
             star4.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius);
 
-
-            // star_i.PhysicsBody.Init(inpmass, inpinitialVelocity, inpgalaxyNoise);
         }   
-
     }
-
-    // Update is called once per frame
-   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Spawner : MonoBehaviour
-{
-	public GameObject obj;
-	public int spawnCount = 100;
-
-	public float numRounds = 1.0f;
-	public int y_range = 10;
-	public int noise = 10;
-	public float radius = 1.0f;
-	public float speed = 1.0f;
-
-	void Awake()
-	{
-		
-		//Double spiral
-		for (int i = 0; i < spawnCount/2; i++)
-		{
-			float theta = ((2 * Mathf.PI * i) / spawnCount) * numRounds;
-			float r = theta * theta;
-			float x = radius * r * Mathf.Cos(theta);
-			float z = radius * r * Mathf.Sin(theta);
-
-			Vector3 pos;
-			pos.x = x + Random.Range(-noise, noise);
-			pos.z = z + Random.Range(-noise, noise);
-			pos.y = 50 + Random.Range(-y_range, y_range);
-
-
-			GameObject _go = Instantiate(obj, pos, transform.rotation);
-			
-
-		}
-
-		for (int i = 0; i < spawnCount / 2; i++)
-		{
-			float theta = ((2 * Mathf.PI * i) / spawnCount) * numRounds;
-			float r = theta * theta;
-			float x = radius * r * Mathf.Cos(theta);
-			float z = radius * r * Mathf.Sin(theta);
-
-			Vector3 pos;
-			pos.x = -x + Random.Range(-noise, noise);
-			pos.z = -z + Random.Range(-noise, noise);
-			pos.y = 50 + Random.Range(-y_range, y_range);
-
-
-			GameObject _go = Instantiate(obj, pos, transform.rotation);
-
-		}
-
-
-	}
-	
-}
-
-*/
