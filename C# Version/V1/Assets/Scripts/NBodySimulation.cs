@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NBodySimulation : MonoBehaviour
 {
-    
+
     List<Body> bodies;
     // Start is called before the first frame update
     void Awake()
@@ -30,31 +30,40 @@ public class NBodySimulation : MonoBehaviour
             body.UpdatePosition(Time.fixedDeltaTime);
         }
 
-        
-		List<Body> to_destroy = new List<Body>();
-		foreach (Body this_body in bodies)
-		{
-            foreach (Body other_body in bodies)
-			if (other_body != this_body)
-			{
-				// distance between bodies
-				float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);
 
-				if (r < this_body.scale)
-				{
-					other_body.mass += this_body.mass;
-					other_body.transform.Translate((this_body.transform.position - other_body.transform.position) / 2);
-					this_body.velocity += other_body.velocity;
-					to_destroy.Add(this_body);
-				}
-			}
-		}
+        List<Body> to_destroy = new List<Body>();
+        int len = bodies.Count;
 
-		foreach (Body _body in to_destroy)
+        for(int i=0; i<len;i++)
         {
-			bodies.Remove(_body);
-			Destroy(_body.gameObject, 0);
-		}
-		
+            for (int j = i + 1; j < len; j++)
+            {
+                Body this_body = bodies[i];
+                Body other_body = bodies[j];
+
+
+                if (other_body != this_body)
+                {
+                    // distance between bodies
+                    float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);
+
+                    if (r < this_body.scale)
+                    {
+                        other_body.mass += this_body.mass;
+                        other_body.transform.Translate((this_body.transform.position - other_body.transform.position) / 2);
+                        this_body.velocity += other_body.velocity;
+                        to_destroy.Add(this_body);
+
+                    }
+                }
+            }
+        }
+
+        foreach (Body _body in to_destroy)
+        {
+            bodies.Remove(_body);
+            Destroy(_body.gameObject, 0);
+        }
+
     }
 }
