@@ -49,10 +49,11 @@ public class NBodySimulation : MonoBehaviour
 
                     if (r < this_body.scale)
                     {
-                        other_body.mass += this_body.mass;
                         other_body.transform.Translate((this_body.transform.position - other_body.transform.position) / 2);
-                        this_body.velocity += other_body.velocity;
-                        to_destroy.Add(this_body);
+                        float totmass = this_body.mass + other_body.mass;
+                        this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
+                        this_body.mass = totmass;
+                        to_destroy.Add(other_body);
 
                     }
                 }
