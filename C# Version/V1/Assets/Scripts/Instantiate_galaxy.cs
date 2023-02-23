@@ -69,19 +69,28 @@ public class Instantiate_galaxy : MonoBehaviour
             star4.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius);
 
 
-
-
             // star_i.PhysicsBody.Init(inpmass, inpinitialVelocity, inpgalaxyNoise);
         }   
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 

@@ -9,27 +9,32 @@ public class Body : MonoBehaviour
 	public Vector3 velocity = Vector3.zero;
 
 
-	public float bigG = 6.67E-11f;
-	public float mass;
-	public float scale;
+	public float bigG = 1;//6.67E-11f;
+	public float mass = 1;
+	public float scale = 1;
 
 	public void init(float inpmass, Vector3 inpinitialVelocity, Vector3 inpscale)
 	{
+
+		/*
 		mass = inpmass;
 		velocity = inpinitialVelocity;
 		scale = inpscale.magnitude;
 		transform.localScale = inpscale;
-		
+		*/
 	}
 	// Use this for initialization
 
 	// Update is called once per frame
 	public void UpdateVelocity(List<Body> Bodies, float timestep)
 	{
-		// Debug.Log("Here");
-
+		/*
+		List<Body> to_destroy = new List<Body>();
 		foreach (Body _body in Bodies.ToArray())
+
+		//for (int i=0; i<Bodies.Length; i++)
 		{
+			//Body _body = Bodies[i];
 			if (_body != this)
 			{
 				// distance between bodies
@@ -39,16 +44,23 @@ public class Body : MonoBehaviour
 				{
 					mass += _body.mass;
 					transform.Translate((_body.transform.position - transform.position) / 2);
-					// Debug.Log("Here");
+					
 					velocity += _body.velocity;
-					// size 
 
-					Destroy(_body.gameObject, 0);
-					Bodies.Remove(_body);
+					to_destroy.Add(_body);
+					
 				}
 			}
 		}
 
+		foreach (Body _body in to_destroy)
+        {
+			Bodies.Remove(_body);
+			Destroy(_body.gameObject, 0);
+			
+
+		}
+		*/
 
 		foreach (Body _body in Bodies)
 		{
@@ -70,10 +82,10 @@ public class Body : MonoBehaviour
 		}
 
 		netForce *= bigG;
-		// Debug.Log(netForce);
-		velocity += netForce * Time.fixedDeltaTime;
-		// velocity = Vector3.one;
-		netForce = Vector3.zero;
+	
+        velocity += netForce * Time.fixedDeltaTime;
+                               
+        netForce = Vector3.zero;
 	
 	}
 
