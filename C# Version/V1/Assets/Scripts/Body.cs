@@ -92,6 +92,6 @@ public class Body : MonoBehaviour
 	public void UpdatePosition(float timeStep)
 	{
 		// Debug.Log(velocity);
-		transform.Translate(velocity);
+		transform.Translate(velocity*timeStep);
 	}
 }
