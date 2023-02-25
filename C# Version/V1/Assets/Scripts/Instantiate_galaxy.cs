@@ -12,6 +12,7 @@ public class Instantiate_galaxy : MonoBehaviour
     public int y_range = 10;
     public int galaxyNoise = 10;
     public float stdDev = 3f;
+    public float galaxyRadius = 10f;
 
     // Start is called before the first frame update
     void Start()
