@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class NBodySimulation : MonoBehaviour
 {
-
+    float tot_ke;
+    float tot_pe;
+    
     List<Body> bodies;
     // Start is called before the first frame update
     void Awake()
