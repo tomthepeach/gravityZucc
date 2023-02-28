@@ -1,5 +1,7 @@
 - Get the galaxy rotating appropriately
 - Sort out the units so that distances and masses are realistic
+- Figure out how to change star colour
+- Figre out how to render blackhole 
 - Scale the star combination to be less glitchy
 - make blackholes a special object - doesn't turn into a star, perhaps the type of the more massive object is preserved
 - Add start menu
