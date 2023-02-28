@@ -8,8 +8,8 @@ public class Body : MonoBehaviour
 	public Vector3 netForce = Vector3.zero;
 	public Vector3 velocity = Vector3.zero;
 	float scalar_vel;
-	// public float ke;
-	//public float pe;
+	public float ke;
+	public float pe;
 
 
 	public float bigG = 1;//6.67E-11f;
@@ -18,21 +18,24 @@ public class Body : MonoBehaviour
 
 	public void init(float inpmass, Vector3 inpinitialVelocity, Vector3 inpscale)
 	{
-		/*
-		mass = inpmass;
+		
+		mass = 1;//inpmass;
 		velocity = inpinitialVelocity;
-		scale = inpscale.magnitude;
-		transform.localScale = inpscale;
-		*/
+		scale = 1;//inpscale.magnitude;
+		transform.localScale = Vector3.one;//inpscale;
+		
 	}
 
 	// Update is called once per frame
 	public void UpdateVelocity(List<Body> Bodies, float timestep)
 	{
+		Vector3 peV = Vector3.zero;
+		float scalar_vel = velocity.magnitude;
+		ke = scalar_vel * scalar_vel * 0.5f * mass;
 
 		foreach (Body _body in Bodies)
 		{
-			//float pe = 0;
+
 			if (_body != this)
 			{
 				// distance between bodies
@@ -46,25 +49,31 @@ public class Body : MonoBehaviour
 
 				Vector3 F = (dir * F_amp);
 				netForce += F;
-				//pe += F * r;
+				peV += F * r;
 			}
 		}
 		
+		peV *= bigG;
+
+		pe = -peV.magnitude;
+
 		netForce *= bigG;
 
-        velocity += netForce * Time.fixedDeltaTime;
-
-		// scalar_vel = velocity.magnitude;
-		//ke = scalar_vel * scalar_vel * 0.5 * mass;
-
-                               
+        velocity += netForce/mass * Time.fixedDeltaTime;
+             
         netForce = Vector3.zero;
-	
 	}
 
 	public void UpdatePosition(float timeStep)
 	{
 		// Debug.Log(velocity);
 		transform.Translate(velocity*timeStep);
+	}
+
+
+	public void CheckBlachole(){
+		if (mass > 150){
+
+		}
 	}
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NBodySimulation : MonoBehaviour
 {
-    // float tot_ke;
-    // float tot_pe;
+    float tot_ke;
+    float tot_pe;
     
     List<Body> bodies;
     // Start is called before the first frame update
@@ -23,6 +23,8 @@ public class NBodySimulation : MonoBehaviour
         foreach (Body body in bodies)
         {
             // Debug.Log("update vel");
+            tot_ke += body.ke;
+            tot_pe += body.pe;
             body.UpdateVelocity(bodies, Time.fixedDeltaTime);
         }
 
@@ -31,7 +33,6 @@ public class NBodySimulation : MonoBehaviour
             // Debug.Log("update pos");
             body.UpdatePosition(Time.fixedDeltaTime);
         }
-
 
         List<Body> to_destroy = new List<Body>();
         int len = bodies.Count;
@@ -46,19 +47,29 @@ public class NBodySimulation : MonoBehaviour
 
                 if (other_body != this_body)
                 {
+
                     // distance between bodies
                     float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);
 
-                    if (r < this_body.scale)
-                    {
-                        other_body.transform.Translate((this_body.transform.position - other_body.transform.position) / 2);
+                    if (r < this_body.scale/2 || r < other_body.scale/2)
+                    {   
+                        Vector3 avg_pos = (this_body.transform.position - other_body.transform.position) / 2;
+                        this_body.transform.Translate(avg_pos);
                         float totmass = this_body.mass + other_body.mass;
-                        this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
-                        this_body.mass = totmass;
-                        to_destroy.Add(other_body);
 
+                        this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
+
+                        this_body.mass = totmass;
+                        this_body.scale = (float) ApproxMath.pow(totmass,0.8);
+                        this_body.transform.localScale = new Vector3(this_body.scale,this_body.scale,this_body.scale);
+
+
+                        //GetComponent<Renderer>().material.BaseColor = new Color(0, 255, 0);
+                        
+                        to_destroy.Add(other_body);
                     }
                 }
+
             }
         }
 
@@ -68,5 +79,9 @@ public class NBodySimulation : MonoBehaviour
             Destroy(_body.gameObject, 0);
         }
 
+
+    Debug.Log(tot_ke);
+    tot_ke = 0;
+    tot_pe = 0;
     }
 }
