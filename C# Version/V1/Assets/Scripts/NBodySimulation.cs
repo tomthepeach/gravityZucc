@@ -47,29 +47,30 @@ public class NBodySimulation : MonoBehaviour
 
                 if (other_body != this_body)
                 {
+                    if (this_body.scale >= other_body.scale)
+                    {
 
-                    // distance between bodies
-                    float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);
+                        float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);
 
-                    if (r < this_body.scale/2 || r < other_body.scale/2)
-                    {   
-                        Vector3 avg_pos = (this_body.transform.position - other_body.transform.position) / 2;
-                        this_body.transform.Translate(avg_pos);
-                        float totmass = this_body.mass + other_body.mass;
+                        if (r < this_body.scale/4)
+                        {   
+                            Vector3 avg_pos = (this_body.transform.position - other_body.transform.position) / 2;
+                            this_body.transform.Translate(avg_pos);
+                            float totmass = this_body.mass + other_body.mass;
 
-                        this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
+                            this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
 
-                        this_body.mass = totmass;
-                        this_body.scale = (float) ApproxMath.pow(totmass,0.8);
-                        this_body.transform.localScale = new Vector3(this_body.scale,this_body.scale,this_body.scale);
+                            this_body.mass = totmass;
+                            this_body.scale = (float) ApproxMath.pow(totmass,0.8);
+                            this_body.transform.localScale = new Vector3(this_body.scale,this_body.scale,this_body.scale);
 
 
-                        //GetComponent<Renderer>().material.BaseColor = new Color(0, 255, 0);
-                        
-                        to_destroy.Add(other_body);
+                            //GetComponent<Renderer>().material.BaseColor = new Color(0, 255, 0);
+                            
+                            to_destroy.Add(other_body);
+                        }
                     }
                 }
-
             }
         }
 
