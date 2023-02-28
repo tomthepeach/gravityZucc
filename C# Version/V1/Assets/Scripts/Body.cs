@@ -8,8 +8,8 @@ public class Body : MonoBehaviour
 	public Vector3 netForce = Vector3.zero;
 	public Vector3 velocity = Vector3.zero;
 	float scalar_vel;
-	public float ke;
-	public float pe;
+	// public float ke;
+	//public float pe;
 
 
 	public float bigG = 1;//6.67E-11f;
@@ -32,7 +32,7 @@ public class Body : MonoBehaviour
 
 		foreach (Body _body in Bodies)
 		{
-			float pe = 0;
+			//float pe = 0;
 			if (_body != this)
 			{
 				// distance between bodies
@@ -46,7 +46,7 @@ public class Body : MonoBehaviour
 
 				Vector3 F = (dir * F_amp);
 				netForce += F;
-				pe += F * r;
+				//pe += F * r;
 			}
 		}
 		
@@ -54,8 +54,8 @@ public class Body : MonoBehaviour
 
         velocity += netForce * Time.fixedDeltaTime;
 
-		scalar_vel = velocity.magnitude;
-		ke = scalar_vel * scalar_vel * 0.5 * mass;
+		// scalar_vel = velocity.magnitude;
+		//ke = scalar_vel * scalar_vel * 0.5 * mass;
 
                                
         netForce = Vector3.zero;
