@@ -47,7 +47,7 @@ public class NBodySimulation : MonoBehaviour
 
                 if (other_body != this_body)
                 {
-                    if (this_body.scale >= other_body.scale)
+                    if (this_body.mass >= other_body.mass)
                     {
 
                         float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);

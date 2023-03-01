@@ -11,6 +11,8 @@ public class Body : MonoBehaviour
 	public float ke;
 	public float pe;
 
+	public bool blackhole;
+
 
 	public float bigG = 1;//6.67E-11f;
 	public float mass = 1;

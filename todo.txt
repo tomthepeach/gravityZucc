@@ -4,13 +4,12 @@ TODO:
 - Figure out how to change star colour
 - Figre out how to render blackhole 
 - make blackholes a special object - doesn't turn into a star, perhaps the type of the more massive object is preserved
-- Add start menu
 - Add some kind of interaction? Spawn another blackhole, trigger scales mass?
-
+- Add real time data display for KE and PE if selected? https://bjmercier.medium.com/graphing-time-series-data-through-unity-463a35821f77
 
 ALMOST DONE:
-- Scale the star combination to be less glitchy /?
-
+- Scale the star combination to be less glitchy /? -- not when the star gets super big :()
+- Add start menu - Needs testing
 
 
 
