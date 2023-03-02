@@ -1993,8 +1993,8 @@ MonoBehaviour:
   numRounds: 2
   y_range: 10
   galaxyNoise: 2
-  stdDev: 1
-  galaxyRadius: 90
+  stdDev: 3
+  galaxyRadius: 20
   speed: 50
 --- !u!4 &1606787340
 Transform:

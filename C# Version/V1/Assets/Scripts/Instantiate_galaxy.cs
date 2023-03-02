@@ -12,6 +12,7 @@ public class Instantiate_galaxy : MonoBehaviour
     public float numRounds = 1.0f;
     public int y_range = 10;
     public int galaxyNoise = 10;
+    public float stdDev = 3f;
     public float galaxyRadius = 10f;
     public float speed = 1f;
 
@@ -71,24 +72,24 @@ public class Instantiate_galaxy : MonoBehaviour
     void Start()
     {
 
-        // GameObject bh = Instantiate(bhPrefab);
-        // bh.transform.position = Vector3.zero;
-        // bh.GetComponent<Body>().init(4200, Vector3.zero, 0.8f, 1);
+        GameObject bh = Instantiate(bhPrefab);
+        bh.transform.position = Vector3.zero;
+        bh.GetComponent<Body>().init(200f, Vector3.zero, 10f, 0);
         
         
         for (int i = 0; i < starCount; i++)
         {
             float scaler = Random.value;
-            float inpmass = 1;// + scaler * 150;
+            float inpmass = 1;// + scaler * 1700;
 
             //Vector3 starRadius = Vector3.one + Vector3.one*17*scaler;
-            float starRadius = (float) ApproxMath.pow(inpmass,0.8);
+            float starRadius = 0.5f;
 
             Vector3 pos;
             Vector3 vel;
 
-            pos.x = ApproxMath.gaussian(0, galaxyRadius);
-            pos.z = ApproxMath.gaussian(0, galaxyRadius);
+            pos.x = galaxyRadius * ApproxMath.gaussian(0, stdDev);
+            pos.z = galaxyRadius * ApproxMath.gaussian(0, stdDev);
             pos.y = Random.Range(-y_range, y_range);
 
             Vector3 origin = Vector3.zero;
