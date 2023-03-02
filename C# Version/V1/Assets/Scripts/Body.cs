@@ -18,7 +18,7 @@ public class Body : MonoBehaviour
 	public float mass = 1;
 	public float scale = 1;
 
-	public void init(float inpmass, Vector3 inpinitialVelocity, Vector3 inpscale, int bh)
+	public void init(float inpmass, Vector3 inpinitialVelocity, float inpscale, int bh)
 	{
 		blackhole = blackhole;
 		mass = 1;//inpmass;

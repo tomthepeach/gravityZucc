@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class NBodySimulation : MonoBehaviour
 {
+
+    // public List<float> kes;
+    // public List<float> pes;
+    // public List<float> totes;
+
     float tot_ke;
     float tot_pe;
+
+    public GameObject bhPrefab;
     
     List<Body> bodies;
     // Start is called before the first frame update
@@ -76,9 +83,15 @@ public class NBodySimulation : MonoBehaviour
         
 
         foreach (Body body in bodies){
-            if (body.blackhole == 0 && body.mass > 50){
+            if (body.blackhole == 0 && body.mass >= 10){
                 //replace body with blackhole body
+                float scale = (float)ApproxMath.pow(body.mass,0.2)/2;
 
+                GameObject bh = Instantiate(bhPrefab);
+                bh.transform.position = body.transform.position;
+                bh.GetComponent<Body>().init(body.mass, body.velocity, scale,1);
+                
+                to_destroy.Add(body);
             }
 
 
@@ -91,7 +104,11 @@ public class NBodySimulation : MonoBehaviour
         }
 
 
-    Debug.Log(tot_ke);
+    // kes.Add(tot_ke);
+    // pes.Add(tot_pe);
+    // totes.Add(tot_ke + tot_pe);
+
+    Debug.Log(tot_pe);
     tot_ke = 0;
     tot_pe = 0;
     }
