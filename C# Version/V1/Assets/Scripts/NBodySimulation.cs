@@ -82,20 +82,20 @@ public class NBodySimulation : MonoBehaviour
         }
         
 
-        foreach (Body body in bodies){
-            if (body.blackhole == 0 && body.mass >= 10){
-                //replace body with blackhole body
-                float scale = (float)ApproxMath.pow(body.mass,0.2)/2;
+        // foreach (Body body in bodies){
+        //     if (body.blackhole == 0 && body.mass >= 10){
+        //         //replace body with blackhole body
+        //         float scale = (float)ApproxMath.pow(body.mass,0.2)/2;
 
-                GameObject bh = Instantiate(bhPrefab);
-                bh.transform.position = body.transform.position;
-                bh.GetComponent<Body>().init(body.mass, body.velocity, scale,1);
+        //         GameObject bh = Instantiate(bhPrefab);
+        //         bh.transform.position = body.transform.position;
+        //         bh.GetComponent<Body>().init(body.mass, body.velocity, scale,1);
                 
-                to_destroy.Add(body);
-            }
+        //         to_destroy.Add(body);
+        //     }
 
 
-        }
+        // }
 
         foreach (Body _body in to_destroy)
         {

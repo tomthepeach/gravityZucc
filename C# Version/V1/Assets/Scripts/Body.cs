@@ -21,10 +21,10 @@ public class Body : MonoBehaviour
 	public void init(float inpmass, Vector3 inpinitialVelocity, float inpscale, int bh)
 	{
 		blackhole = blackhole;
-		mass = 1;//inpmass;
+		mass = inpmass;
 		velocity = inpinitialVelocity;
-		scale = 1;//inpscale.magnitude;
-		transform.localScale = Vector3.one;//inpscale;
+		scale = inpscale;
+		transform.localScale = Vector3.one * scale;//inpscale;
 		
 	}
 
