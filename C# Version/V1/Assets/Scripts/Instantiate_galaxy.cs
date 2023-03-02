@@ -74,22 +74,22 @@ public class Instantiate_galaxy : MonoBehaviour
 
         GameObject bh = Instantiate(bhPrefab);
         bh.transform.position = Vector3.zero;
-        bh.GetComponent<Body>().init(200f, Vector3.zero, 10f, 0);
+        bh.GetComponent<Body>().init(20f, Vector3.zero, 10f, 0);
         
         
         for (int i = 0; i < starCount; i++)
         {
             float scaler = Random.value;
-            float inpmass = 1;// + scaler * 1700;
+            float inpmass = 1;// + scaler * 150;
 
             //Vector3 starRadius = Vector3.one + Vector3.one*17*scaler;
-            float starRadius = 1;
+            float starRadius = (float) ApproxMath.pow(inpmass,0.8);
 
             Vector3 pos;
             Vector3 vel;
 
-            pos.x = galaxyRadius * ApproxMath.gaussian(0, stdDev);
-            pos.z = galaxyRadius * ApproxMath.gaussian(0, stdDev);
+            pos.x = ApproxMath.gaussian(0, galaxyRadius);
+            pos.z = ApproxMath.gaussian(0, galaxyRadius);
             pos.y = Random.Range(-y_range, y_range);
 
             Vector3 origin = Vector3.zero;

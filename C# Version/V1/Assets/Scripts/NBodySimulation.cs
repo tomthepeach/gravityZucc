@@ -27,6 +27,7 @@ public class NBodySimulation : MonoBehaviour
         Body[] bodyarr = FindObjectsOfType<Body>();
         bodies = new List<Body>(bodyarr);
 
+
         foreach (Body body in bodies)
         {
             // Debug.Log("update vel");
@@ -35,11 +36,13 @@ public class NBodySimulation : MonoBehaviour
             body.UpdateVelocity(bodies, Time.fixedDeltaTime);
         }
 
+
         foreach (Body body in bodies)
         {
             // Debug.Log("update pos");
             body.UpdatePosition(Time.fixedDeltaTime);
         }
+
 
         List<Body> to_destroy = new List<Body>();
         int len = bodies.Count;
@@ -54,48 +57,54 @@ public class NBodySimulation : MonoBehaviour
 
                 if (other_body != this_body)
                 {
-                    if (this_body.mass >= other_body.mass)
-                    {
 
-                        float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);
+                    float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);
 
-                        if (r < this_body.scale/4)
-                        {   
-                            Vector3 avg_pos = (this_body.transform.position - other_body.transform.position) / 2;
-                            this_body.transform.Translate(avg_pos);
-                            float totmass = this_body.mass + other_body.mass;
+                    if (r < this_body.scale/2 || r < other_body.scale/2)
+                    {   
 
-                            this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
-
-                            this_body.mass = totmass;
-                            this_body.scale = (float) ApproxMath.pow(totmass,0.8);
-                            this_body.transform.localScale = new Vector3(this_body.scale,this_body.scale,this_body.scale);
-
-
-                            //GetComponent<Renderer>().material.BaseColor = new Color(0, 255, 0);
+                        // For two bh and two stars
+                        if (this_body.blackhole == other_body.blackhole){
                             
-                            to_destroy.Add(other_body);
+                            Combine(other_body, this_body);
+                            
                         }
+                        else // IF bodya.bh != bodyb.bh
+                        {
+                            switch (this_body.blackhole){
+                                
+                                case 0: Combine(other_body, this_body);
+                                    to_destroy.Add(this_body);
+                                    break;
+
+                                case 1: Combine(this_body, other_body);
+                                    to_destroy.Add(other_body);
+                                    break;
+                                    
+                            }
+
+                        }
+
                     }
                 }
             }
         }
         
 
-        // foreach (Body body in bodies){
-        //     if (body.blackhole == 0 && body.mass >= 10){
-        //         //replace body with blackhole body
-        //         float scale = (float)ApproxMath.pow(body.mass,0.2)/2;
+        foreach (Body body in bodies){
+            if (body.blackhole == 0 && body.mass >= 10){
+                //replace body with blackhole body
+                float radius = 2 * 
 
-        //         GameObject bh = Instantiate(bhPrefab);
-        //         bh.transform.position = body.transform.position;
-        //         bh.GetComponent<Body>().init(body.mass, body.velocity, scale,1);
+                GameObject bh = Instantiate(bhPrefab);
+                bh.transform.position = body.transform.position;
+                bh.GetComponent<Body>().init(body.mass, body.velocity, scale,1);
                 
-        //         to_destroy.Add(body);
-        //     }
+                to_destroy.Add(body);
+            }
 
 
-        // }
+         }
 
         foreach (Body _body in to_destroy)
         {
@@ -112,4 +121,27 @@ public class NBodySimulation : MonoBehaviour
     tot_ke = 0;
     tot_pe = 0;
     }
+
+
+
+    void Combine(Body this_body, Body other_body){
+
+        Vector3 avg_pos = (this_body.transform.position - other_body.transform.position) / 2;
+        this_body.transform.Translate(avg_pos);
+        float totmass = this_body.mass + other_body.mass;
+
+        this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
+
+        this_body.mass = totmass;
+        this_body.scale = (float) ApproxMath.pow(totmass,0.8);
+        this_body.transform.localScale = new Vector3(this_body.scale,this_body.scale,this_body.scale);
+
+        //GetComponent<Renderer>().material.BaseColor = new Color(0, 255, 0);
+       
+    }
+
+
+
+
+
 }
