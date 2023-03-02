@@ -72,9 +72,9 @@ public class Instantiate_galaxy : MonoBehaviour
     void Start()
     {
 
-        GameObject bh = Instantiate(bhPrefab);
-        bh.transform.position = Vector3.zero;
-        bh.GetComponent<Body>().init(20f, Vector3.zero, 10f, 0);
+        // GameObject bh = Instantiate(bhPrefab);
+        // bh.transform.position = Vector3.zero;
+        // bh.GetComponent<Body>().init(4200, Vector3.zero, 0.8f, 1);
         
         
         for (int i = 0; i < starCount; i++)

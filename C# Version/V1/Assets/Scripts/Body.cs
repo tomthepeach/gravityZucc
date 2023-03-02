@@ -14,14 +14,17 @@ public class Body : MonoBehaviour
 	public int blackhole = 0; // 1 for bh. 0 for star
 
 
-	public float bigG = 40f;
+	float bigG = 40f;
 	public float mass = 1;
+
+	public float radius = 1;
 
 	public void init(float inpmass, Vector3 inpinitialVelocity, float inpRadius, int bh)
 	{
 		blackhole = blackhole;
 		mass = inpmass;
 		velocity = inpinitialVelocity;
+		radius = inpRadius;
 		transform.localScale = Vector3.one * inpRadius * 2;
 		
 	}
