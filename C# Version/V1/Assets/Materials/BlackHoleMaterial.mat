@@ -2,16 +2,14 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 8
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BlackHoleMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 6b32eafdefc95db409f4deca6814c0f9,
-    type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_Shader: {fileID: -6465566751694194690, guid: f06b87d71eb203c4ca8b08bf704b23fe, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -63,9 +61,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_2E510540: 0.79
-    - Vector1_36874B96: 0.05
-    - Vector1_DC2B334F: 2.8
+    - Vector1_2E510540: 0.65
+    - Vector1_36874B96: 5
+    - Vector1_DC2B334F: 0.8
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -76,6 +74,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Inner_Depth: 6
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Outer_Ring: 6
