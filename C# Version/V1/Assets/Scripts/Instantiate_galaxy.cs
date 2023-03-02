@@ -91,7 +91,7 @@ public class Instantiate_galaxy : MonoBehaviour
 
             GameObject star3 = Instantiate(starPrefab);
             star3.transform.position = pos;
-            star3.GetComponent<Body>().init(inpmass, velMag * velDir, starRadius);
+            star3.GetComponent<Body>().init(inpmass, velMag * velDir, starRadius,0);
 
         }   
     }

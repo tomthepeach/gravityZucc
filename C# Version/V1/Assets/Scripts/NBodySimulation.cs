@@ -73,6 +73,16 @@ public class NBodySimulation : MonoBehaviour
                 }
             }
         }
+        
+
+        foreach (Body body in bodies){
+            if (body.blackhole == 0 && body.mass > 50){
+                //replace body with blackhole body
+
+            }
+
+
+        }
 
         foreach (Body _body in to_destroy)
         {

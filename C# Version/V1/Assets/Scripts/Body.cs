@@ -11,16 +11,16 @@ public class Body : MonoBehaviour
 	public float ke;
 	public float pe;
 
-	public bool blackhole;
+	public int blackhole = 0; // 1 for bh. 0 for star
 
 
 	public float bigG = 1;//6.67E-11f;
 	public float mass = 1;
 	public float scale = 1;
 
-	public void init(float inpmass, Vector3 inpinitialVelocity, Vector3 inpscale)
+	public void init(float inpmass, Vector3 inpinitialVelocity, Vector3 inpscale, int bh)
 	{
-		
+		blackhole = blackhole;
 		mass = 1;//inpmass;
 		velocity = inpinitialVelocity;
 		scale = 1;//inpscale.magnitude;
