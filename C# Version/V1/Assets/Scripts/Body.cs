@@ -21,7 +21,7 @@ public class Body : MonoBehaviour
 
 	public void init(float inpmass, Vector3 inpinitialVelocity, float inpRadius, int bh)
 	{
-		blackhole = blackhole;
+		blackhole = bh;
 		mass = inpmass;
 		velocity = inpinitialVelocity;
 		radius = inpRadius;

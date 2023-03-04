@@ -21,4 +21,30 @@ public class ApproxMath
         return BitConverter.Int64BitsToDouble(((long)tmp2) << 32);
     }
 
+    public static float rayleigh(float sigma = 1.0f)
+    {
+        return sigma * Mathf.Sqrt(-2.0f * Mathf.Log(1.0f - Random.value));
+    }
+
+    public static float combinedSphereRadius(float r1, float r2)
+    {
+        float vol1 = (4.0f / 3.0f) * Mathf.PI * r1 * r1 * r1;
+        float vol2 = (4.0f / 3.0f) * Mathf.PI * r2 * r2 * r2;
+        return (float)pow((vol1 + vol2) * 3/(4 * Math.PI), 1.0f / 3.0f);
+    }
+
+    public static float boundedGaussian(float mean = 0.0f, float stdDev = 1.0f, float min = 0.0f, float max = 1.0f)
+    {
+        float result = gaussian(mean, stdDev);
+        if (result < min)
+        {
+            result = min;
+        }
+        else if (result > max)
+        {
+            result = max;
+        }
+        return result;
+    }
+
 }

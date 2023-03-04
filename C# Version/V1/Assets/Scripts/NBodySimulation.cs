@@ -46,6 +46,7 @@ public class NBodySimulation : MonoBehaviour
 
         List<Body> to_destroy = new List<Body>();
         int len = bodies.Count;
+        float avgRadius = 0;
 
         for(int i=0; i<len;i++)
         {
@@ -59,6 +60,7 @@ public class NBodySimulation : MonoBehaviour
                 {
 
                     float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);
+                    avgRadius += r;
 
                     if (r < this_body.radius || r < other_body.radius)
                     {   
@@ -66,9 +68,10 @@ public class NBodySimulation : MonoBehaviour
                         // For two bh and two stars
                         if (this_body.blackhole == other_body.blackhole){
                             Combine(this_body, other_body);
+                            this_body.radius = ApproxMath.combinedSphereRadius(this_body.radius, other_body.radius);
+                            this_body.transform.localScale = Vector3.one * this_body.radius * 2;
                             to_destroy.Add(other_body);
 
-                            this_body.radius = (float) ApproxMath.pow(this_body.mass,0.8) * 0.00465f;
                             
                         }
                         else // IF bodya.bh != bodyb.bh
@@ -91,37 +94,23 @@ public class NBodySimulation : MonoBehaviour
                 }
             }
         }
-        
 
-        // foreach (Body body in bodies){
-        //     if (body.blackhole == 0 && body.mass >= 10){
-        //         //replace body with blackhole body
-        //         float radius = 2 * 
-
-        //         GameObject bh = Instantiate(bhPrefab);
-        //         bh.transform.position = body.transform.position;
-        //         bh.GetComponent<Body>().init(body.mass, body.velocity, radius,1);
-                
-        //         to_destroy.Add(body);
-        //     }
-
-
-        //  }
-
-        // foreach (Body _body in to_destroy)
-        // {
-        //     bodies.Remove(_body);
-        //     Destroy(_body.gameObject, 0);
-        // }
+        foreach (Body _body in to_destroy)
+        {
+            bodies.Remove(_body);
+            Destroy(_body.gameObject, 0);
+        }
 
 
     // kes.Add(tot_ke);
     // pes.Add(tot_pe);
     // totes.Add(tot_ke + tot_pe);
-
-    Debug.Log(tot_pe);
+    avgRadius/=len;
+    Debug.Log(avgRadius);
+    // Debug.Log(tot_pe);
     tot_ke = 0;
     tot_pe = 0;
+
     }
 
 
