@@ -1994,8 +1994,8 @@ MonoBehaviour:
   y_range: 10
   galaxyNoise: 2
   stdDev: 1
-  galaxyRadius: 2000
-  speed: 500
+  galaxyRadius: 1000
+  speed: 1000
   velocityCap: 500
   velocityScaler: 0.8
 --- !u!4 &1606787340

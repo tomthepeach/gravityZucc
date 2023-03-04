@@ -80,16 +80,18 @@ public class NBodySimulation : MonoBehaviour
                                 
                                 case 0: Combine(other_body, this_body);
                                     to_destroy.Add(this_body);
+                                    other_body.radius = ApproxMath.schwarzschildRadius(other_body.mass);
+                                    other_body.transform.localScale = Vector3.one * this_body.radius * 2;
                                     break;
 
                                 case 1: Combine(this_body, other_body);
                                     to_destroy.Add(other_body);
+                                    this_body.radius = ApproxMath.schwarzschildRadius(this_body.mass);
+                                    this_body.transform.localScale = Vector3.one * this_body.radius * 2;
                                     break;
                                     
                             }
-
                         }
-
                     }
                 }
             }
@@ -120,12 +122,8 @@ public class NBodySimulation : MonoBehaviour
         Vector3 avg_pos = (this_body.transform.position - other_body.transform.position) / 2;
         this_body.transform.Translate(avg_pos);
         float totmass = this_body.mass + other_body.mass;
-
         this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
-
         this_body.mass = totmass;
-        
-        this_body.transform.localScale = new Vector3(this_body.radius,this_body.radius,this_body.radius);
 
         //GetComponent<Renderer>().material.BaseColor = new Color(0, 255, 0);
        

@@ -47,4 +47,12 @@ public class ApproxMath
         return result;
     }
 
+    public static float schwarzschildRadius(float mass)
+    {
+        const double c = 299792458.0;
+        const double smass = 1.989e30;
+        const double G = 40.0;
+        return (float)(2.0d*smass*(double)mass*G/(c*c));
+    }
+
 }

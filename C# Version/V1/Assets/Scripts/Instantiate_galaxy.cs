@@ -85,7 +85,7 @@ public class Instantiate_galaxy : MonoBehaviour
             float starRadius = 15f * scaler;
 
             Vector3 pos;
-            pos = Random.insideUnitSphere * ApproxMath.boundedGaussian(0.0f, galaxyRadius/2.0f, 0.01f, galaxyRadius);
+            pos = Random.insideUnitSphere * galaxyRadius;//ApproxMath.boundedGaussian(0.0f, galaxyRadius/2.0f, 0.01f, galaxyRadius);
 
             Vector3 origin = Vector3.zero;
             Vector3 Dir = pos - origin;
@@ -105,6 +105,6 @@ public class Instantiate_galaxy : MonoBehaviour
 
         GameObject bh = Instantiate(bhPrefab);
         bh.transform.position = Vector3.zero;
-        bh.GetComponent<Body>().init(totalMass*0.05f, Vector3.zero, 0.8f, 1);
+        bh.GetComponent<Body>().init(1000f, Vector3.zero, 10f, 1);//totalMass*0.05f
     }
 }
