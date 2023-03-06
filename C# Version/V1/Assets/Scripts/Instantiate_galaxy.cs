@@ -12,7 +12,6 @@ public class Instantiate_galaxy : MonoBehaviour
     public float numRounds = 1.0f;
     public int y_range = 10;
     public int galaxyNoise = 10;
-    public float stdDev = 3f;
     public float galaxyRadius = 10f;
     public float speed = 1f;
 
