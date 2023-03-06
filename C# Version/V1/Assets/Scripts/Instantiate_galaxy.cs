@@ -74,7 +74,7 @@ public class Instantiate_galaxy : MonoBehaviour
     void Start()
     {
 
-
+        //starCount =  NumStars.numStars;
         
         float totalMass = 0;
         for (int i = 0; i < starCount; i++)
