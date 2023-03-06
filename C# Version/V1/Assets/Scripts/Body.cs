@@ -14,7 +14,7 @@ public class Body : MonoBehaviour
 	public int blackhole = 0; // 1 for bh. 0 for star
 
 
-	float bigG = 40f;
+	float bigG = 40f; // = NumStars.bigG;
 	public float mass = 1;
 
 	public float radius = 1;
