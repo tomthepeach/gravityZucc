@@ -56,11 +56,11 @@ public class Body : MonoBehaviour
 			}
 		}
 		
-		peV *= bigG;
+		peV *= Constants.BIGG;
 
 		pe = -peV.magnitude;
 
-		netForce *= bigG;
+		netForce *= Constants.BIGG;
 
         velocity += netForce/mass * Time.fixedDeltaTime;
              
@@ -72,11 +72,5 @@ public class Body : MonoBehaviour
 		// Debug.Log(velocity);
 		transform.Translate(velocity*timeStep);
 	}
-
-
-	public void CheckBlachole(){
-		if (mass > 150){
-
-		}
-	}
+	
 }

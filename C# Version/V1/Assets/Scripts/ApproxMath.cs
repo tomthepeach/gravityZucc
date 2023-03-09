@@ -21,10 +21,6 @@ public class ApproxMath
         return BitConverter.Int64BitsToDouble(((long)tmp2) << 32);
     }
 
-    public static float rayleigh(float sigma = 1.0f)
-    {
-        return sigma * Mathf.Sqrt(-2.0f * Mathf.Log(1.0f - Random.value));
-    }
 
     public static float combinedSphereRadius(float r1, float r2)
     {
@@ -33,19 +29,33 @@ public class ApproxMath
         return (float)pow((vol1 + vol2) * 3/(4 * Math.PI), 1.0f / 3.0f);
     }
 
-    public static float boundedGaussian(float mean = 0.0f, float stdDev = 1.0f, float min = 0.0f, float max = 1.0f)
+    public static float beta(float a, float b) 
     {
-        float result = gaussian(mean, stdDev);
-        if (result < min)
+        // a, b greater-than 0
+        double alpha = a + b;
+        double beta = 0.0;
+        double u1, u2, w, v = 0.0;
+
+        if (Mathf.Min(a, b) <= 1.0) beta = Math.Max(1 / a, 1 / b);
+        else beta = Mathf.Sqrt((alpha - 2.0) / (2 * a * b - alpha));
+
+        double gamma = a + 1 / beta;
+
+        while (true)
         {
-            result = min;
+            u1 = Random.value;
+            u2 = Random.value;
+            v = beta * Math.Log(u1 / (1 - u1));
+            w = a * Math.Exp(v);
+
+            double tmp = Math.Log(alpha / (b + w));
+
+            if (alpha * tmp + (gamma * v) - 1.3862944 >= Mathf.Log(u1 * u1 * u2)) break;
         }
-        else if (result > max)
-        {
-            result = max;
-        }
-        return result;
-    }
+
+        double x = w / (b + w);
+        return x;
+    } 
 
     public static float schwarzschildRadius(float mass)
     {
