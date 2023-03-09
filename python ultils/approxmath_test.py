@@ -21,9 +21,44 @@ def bounded_gaussian(mean = 0.0, stdDev = 1.0, lowerBound = -1.0, upperBound = 1
         if result >= lowerBound and result <= upperBound:
             return result
 
-vals = [bounded_gaussian(0.5, 40, 0, 150) for i in range(10000)]
+vals = [bounded_gaussian(0.5, 10, 0.1, 110) for i in range(100)]
 
 plt.hist(vals, bins=100)
 print(np.mean(vals))
+print(np.sum(vals))
+
+# %%
+
+def beta(a, b):
+
+    alpha = a + b
+    beta = 0.0
+    u1 = u2 = w = v = 0.0
+
+    if (np.min((a, b)) <= 1.0): 
+        beta = np.max(1 / a, 1 / b)
+    else: 
+        beta = np.sqrt((alpha - 2.0) / (2 * a * b - alpha))
+
+    gamma = a + 1 / beta
+
+    while (True):
+
+        u1 = random.random()
+        u2 = random.random()
+        v = beta * np.log(u1 / (1 - u1))
+        w = a * np.exp(v)
+
+        tmp = np.log(alpha / (b + w))
+
+        if (alpha * tmp + (gamma * v) - 1.3862944 >= np.log(u1 * u1 * u2)): break
+    x = w / (b + w)
+    return x
+
+vals = [beta(2,478) for i in range(10000)]
+
+plt.hist(vals, bins=100)
+
+print(np.mean(vals)*120)
 
 # %%

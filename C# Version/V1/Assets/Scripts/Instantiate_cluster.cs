@@ -12,28 +12,25 @@ public class Instantiate_cluster : MonoBehaviour
     public int starCount = 100;
     public float clusterRadius = 1000f;
     public float timewarp = 1f;
-    public float clusterMass = 10000.0f;
+    public float clusterMass = 1000.0f;
     
-
     void Start()
     {
 
         //starCount =  NumStars.numStars;
         Time.timeScale = timewarp * Constants.YEAR_S;
-        float totalMass = 0;
-        dist = Beta(2f, 5f);
+
         for (int i = 0; i < starCount; i++)
         {
-            float scaler = ApproxMath.boundedGaussian(0.5f);
-            float inpmass = 120f * scaler;
-            totalMass += inpmass;
+            float scaler = ApproxMath.beta(2f, 2f*120f/(clusterMass/starCount));
+            float inpmass = scaler * 120f;
             float starRadius = 15f * scaler;
 
             Vector3 pos;
             pos = Random.insideUnitSphere * galaxyRadius;//ApproxMath.boundedGaussian(0.0f, galaxyRadius/2.0f, 0.01f, galaxyRadius);
 
             Vector3 velDir = Vector3.Cross(pos, Vector3.up).normalized;
-            float velMag = Mathf.Sqrt(Constants.BIGG * (clusterMass - inpmass)/ Dir.magnitude);
+            float velMag = Mathf.Sqrt(Constants.BIGG * (clusterMass - inpmass)/ Dir.magnitude)* time;
 
             GameObject star3 = Instantiate(starPrefab);
             star3.transform.position = pos;
