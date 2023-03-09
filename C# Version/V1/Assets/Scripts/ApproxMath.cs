@@ -59,10 +59,17 @@ public class ApproxMath
 
     public static float schwarzschildRadius(float mass)
     {
-        const double c = 299792458.0;
-        const double smass = 1.989e30;
-        const double G = 6.67e-11;
-        return (float)(2.0d*smass*(double)mass*G/(c*c));
+        const float scaler = 1e6f;
+        return (2f*Constants.SOLAR_MASS*mass*Constants.BIGG*scaler)/(Constants.C*Constants.C*Constants.AU);
     }
+
+    public static float orbitalVelocity(float mass, float distance)
+    {
+        // takes mass in solar masses, distance in AU
+        // returns velocity in AU/yr
+        float vel = Mathf.Sqrt(Constants.BIGG * mass* Constants.SOLAR_MASS / distance * Constants.AU);
+        return vel * Constants.YEAR_S/ Constants.AU;
+    }
+    
 
 }

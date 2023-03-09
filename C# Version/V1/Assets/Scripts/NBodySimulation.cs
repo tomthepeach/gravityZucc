@@ -33,14 +33,14 @@ public class NBodySimulation : MonoBehaviour
             // Debug.Log("update vel");
             tot_ke += body.ke;
             tot_pe += body.pe;
-            body.UpdateVelocity(bodies, Time.fixedDeltaTime);
+            body.UpdateVelocity(bodies);
         }
 
 
         foreach (Body body in bodies)
         {
             // Debug.Log("update pos");
-            body.UpdatePosition(Time.fixedDeltaTime);
+            body.UpdatePosition();
         }
 
 
@@ -81,7 +81,7 @@ public class NBodySimulation : MonoBehaviour
                                 case 0: Combine(other_body, this_body);
                                     to_destroy.Add(this_body);
                                     other_body.radius = ApproxMath.schwarzschildRadius(other_body.mass);
-                                    other_body.transform.localScale = Vector3.one * this_body.radius * 2;
+                                    other_body.transform.localScale = Vector3.one * other_body.radius * 2;
                                     break;
 
                                 case 1: Combine(this_body, other_body);

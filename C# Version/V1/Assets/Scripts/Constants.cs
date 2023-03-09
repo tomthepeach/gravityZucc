@@ -7,5 +7,4 @@ class Constants
     public const float YEAR_S = 31536000.0f;
     public const float C = 299792458.0f;
 
-
 }

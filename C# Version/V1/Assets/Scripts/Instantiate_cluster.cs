@@ -13,23 +13,22 @@ public class Instantiate_cluster : MonoBehaviour
     public float clusterRadius = 1000f;
     public float timewarp = 1f;
     public float clusterMass = 1000.0f;
+    public float bhMass = 100.0f;
     
     void Start()
     {
 
         //starCount =  NumStars.numStars;
         Time.timeScale = timewarp;
-        // Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
+        Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
 
         GameObject bh = Instantiate(bhPrefab);
-        bh.transform.position = Vector3.zero;
-        float bhmass = clusterMass * 0.05f;   
-        bh.GetComponent<Body>().init(bhmass, Vector3.zero, ApproxMath.schwarzschildRadius(bhmass), 1);
-        float remainingMass = clusterMass - bhmass;
+        bh.transform.position = Vector3.zero; 
+        bh.GetComponent<Body>().init(bhMass, Vector3.zero, ApproxMath.schwarzschildRadius(bhMass), 1);
 
         for (int i = 0; i < starCount; i++)
         {
-            float scaler = ApproxMath.beta(2f, 2f*120f/(remainingMass/starCount));
+            float scaler = ApproxMath.beta(2f, 2f*120f/(clusterMass/starCount));
             float inpmass = scaler * 120f;
             float starRadius = 15f * scaler;
 
@@ -37,7 +36,7 @@ public class Instantiate_cluster : MonoBehaviour
             pos = Random.insideUnitSphere * clusterRadius;//ApproxMath.boundedGaussian(0.0f, galaxyRadius/2.0f, 0.01f, galaxyRadius);
 
             Vector3 velDir = Vector3.Cross(pos, Vector3.up).normalized;
-            float velMag = Mathf.Sqrt(Constants.BIGG * (clusterMass - inpmass)/ pos.magnitude) * Time.deltaTime * Constants.YEAR_S;
+            float velMag = ApproxMath.orbitalVelocity(clusterMass, pos.magnitude);
 
             GameObject star3 = Instantiate(starPrefab);
             star3.transform.position = pos;

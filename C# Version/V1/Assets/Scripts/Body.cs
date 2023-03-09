@@ -28,7 +28,7 @@ public class Body : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	public void UpdateVelocity(List<Body> Bodies, float timestep)
+	public void UpdateVelocity(List<Body> Bodies)
 	{
 		Vector3 peV = Vector3.zero;
 		float scalar_vel = velocity.magnitude;
@@ -60,15 +60,15 @@ public class Body : MonoBehaviour
 
 		netForce *= Constants.BIGG;
 
-        velocity += netForce/mass * Time.deltaTime * Constants.YEAR_S;
+        velocity += netForce/mass * Time.deltaTime;
              
         netForce = Vector3.zero;
 	}
 
-	public void UpdatePosition(float timeStep)
+	public void UpdatePosition()
 	{
 		// Debug.Log(velocity);
-		transform.Translate(velocity*timeStep);
+		transform.Translate(velocity * Time.deltaTime);
 	}
 
 }
