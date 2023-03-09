@@ -2499,38 +2499,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1606787340}
-  - component: {fileID: 1606787339}
+  - component: {fileID: 1606787341}
   m_Layer: 0
-  m_Name: InstanGal
+  m_Name: InstantCluster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1606787339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606787338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d91e479a30cf0489330125dd379760, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  starPrefab: {fileID: 3910284366748954017, guid: 1ba1779268409d14f9b84870b1e0efec,
-    type: 3}
-  bhPrefab: {fileID: 5173510674798946185, guid: 900668992900904498bcc2bcb23c9cc3,
-    type: 3}
-  starCount: 110
-  numRounds: 2
-  y_range: 10
-  galaxyNoise: 2
-  galaxyRadius: 1000
-  speed: 1000
-  velocityCap: 500
-  velocityScaler: 0.8
 --- !u!4 &1606787340
 Transform:
   m_ObjectHideFlags: 0
@@ -2546,6 +2522,27 @@ Transform:
   m_Father: {fileID: 1422341441}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1606787341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606787338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79010b68773221c429c306e059789697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starPrefab: {fileID: 3910284366748954017, guid: 1ba1779268409d14f9b84870b1e0efec,
+    type: 3}
+  bhPrefab: {fileID: 5173510674798946185, guid: 900668992900904498bcc2bcb23c9cc3,
+    type: 3}
+  starCount: 100
+  clusterRadius: 500
+  timewarp: 100
+  clusterMass: 1000
+  bhMass: 1000
 --- !u!1 &1735129421
 GameObject:
   m_ObjectHideFlags: 0

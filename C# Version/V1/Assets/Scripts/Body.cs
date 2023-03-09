@@ -58,7 +58,7 @@ public class Body : MonoBehaviour
 
 		pe = -peV.magnitude;
 
-		netForce *= Constants.BIGG;
+		netForce *= (Constants.BIGG);
 
         velocity += netForce/mass * Time.deltaTime;
              

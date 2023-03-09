@@ -37,13 +37,13 @@ public class Instantiate_cluster : MonoBehaviour
 
             Vector3 velDir = Vector3.Cross(pos, Vector3.up).normalized;
             float velMag = ApproxMath.orbitalVelocity(clusterMass, pos.magnitude);
+            // float velMag = 0f;
+
 
             GameObject star3 = Instantiate(starPrefab);
             star3.transform.position = pos;
             star3.GetComponent<Body>().init(inpmass, velMag * velDir, starRadius,0);
 
         }
-
-
     }
 }
