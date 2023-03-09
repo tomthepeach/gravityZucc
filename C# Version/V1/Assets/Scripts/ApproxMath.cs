@@ -67,7 +67,7 @@ public class ApproxMath
     {
         // takes mass in solar masses, distance in AU
         // returns velocity in AU/yr
-        float vel = Mathf.Sqrt(Constants.BIGG * mass* Constants.SOLAR_MASS / distance * Constants.AU);
+        float vel = Mathf.Sqrt(Constants.BIGG * mass * Constants.SOLAR_MASS / distance * Constants.AU);
         return vel * Constants.YEAR_S/ Constants.AU;
     }
     
