@@ -62,3 +62,15 @@ plt.hist(vals, bins=100)
 print(np.mean(vals)*120)
 
 # %%
+
+
+BIGG = 6.67408e-11
+AU = 149597870700
+SOLAR_MASS = 1.989e30
+SOLAR_RADIUS = 6.957e8
+YEAR_S = 31536000.0
+C = 299792458.0
+
+BIGG * YEAR_S**2 * SOLAR_MASS / AU**3
+
+# %%
