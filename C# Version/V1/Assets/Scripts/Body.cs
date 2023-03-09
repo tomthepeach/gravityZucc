@@ -13,8 +13,6 @@ public class Body : MonoBehaviour
 
 	public int blackhole = 0; // 1 for bh. 0 for star
 
-
-	float bigG = 40f; // = NumStars.bigG;
 	public float mass = 1;
 
 	public float radius = 1;
@@ -62,7 +60,7 @@ public class Body : MonoBehaviour
 
 		netForce *= Constants.BIGG;
 
-        velocity += netForce/mass * Time.fixedDeltaTime;
+        velocity += netForce/mass * Time.deltaTime * Constants.YEAR_S;
              
         netForce = Vector3.zero;
 	}
@@ -72,5 +70,5 @@ public class Body : MonoBehaviour
 		// Debug.Log(velocity);
 		transform.Translate(velocity*timeStep);
 	}
-	
+
 }

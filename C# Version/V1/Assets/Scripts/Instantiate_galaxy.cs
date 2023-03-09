@@ -26,7 +26,7 @@ public class Instantiate_galaxy : MonoBehaviour
             float scaler = Random.value;
             float inpmass = 1 + scaler * 1700;
 
-            Vector3 starRadius = Vector3.one + Vector3.one*17*scaler;
+            float starRadius = 1 + 17*scaler;
 
             float theta = ((2 * 2 * Mathf.PI * i) / starCount) * numRounds;
             float r = theta * theta;
@@ -40,7 +40,7 @@ public class Instantiate_galaxy : MonoBehaviour
 
             GameObject star1 = Instantiate(starPrefab);
             star1.transform.position = pos;
-            star1.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius);
+            star1.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius, 0);
 
             pos.x = -x + Random.Range(-galaxyNoise, galaxyNoise);
             pos.z = -z + Random.Range(-galaxyNoise, galaxyNoise);
@@ -48,7 +48,7 @@ public class Instantiate_galaxy : MonoBehaviour
 
             GameObject star2 = Instantiate(starPrefab);
             star2.transform.position = pos;
-            star2.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius);
+            star2.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius, 0);
             
 
             pos.x = galaxyRadius * ApproxMath.gaussian(transform.position.x, stdDev);
@@ -57,7 +57,7 @@ public class Instantiate_galaxy : MonoBehaviour
 
             GameObject star3 = Instantiate(starPrefab);
             star3.transform.position = pos;
-            star3.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius);
+            star3.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius, 0);
 
 
             pos.x = galaxyRadius * ApproxMath.gaussian(transform.position.x, stdDev);
@@ -66,7 +66,8 @@ public class Instantiate_galaxy : MonoBehaviour
 
             GameObject star4 = Instantiate(starPrefab);
             star4.transform.position = pos;
-            star4.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius);
+            star4.GetComponent<Body>().init(inpmass, Vector3.zero, starRadius, 0);
 
         }   
     }
+}

@@ -26,34 +26,34 @@ public class ApproxMath
     {
         float vol1 = (4.0f / 3.0f) * Mathf.PI * r1 * r1 * r1;
         float vol2 = (4.0f / 3.0f) * Mathf.PI * r2 * r2 * r2;
-        return (float)pow((vol1 + vol2) * 3/(4 * Math.PI), 1.0f / 3.0f);
+        return (float)pow((vol1 + vol2) * 3/(4 * Mathf.PI), 1.0f / 3.0f);
     }
 
     public static float beta(float a, float b) 
     {
         // a, b greater-than 0
-        double alpha = a + b;
-        double beta = 0.0;
-        double u1, u2, w, v = 0.0;
+        float alpha = a + b;
+        float beta = 0.0f;
+        float u1, u2, w, v = 0.0f;
 
-        if (Mathf.Min(a, b) <= 1.0) beta = Math.Max(1 / a, 1 / b);
-        else beta = Mathf.Sqrt((alpha - 2.0) / (2 * a * b - alpha));
+        if (Mathf.Min(a, b) <= 1.0f) beta = Mathf.Max(1 / a, 1 / b);
+        else beta = Mathf.Sqrt((alpha - 2.0f) / (2 * a * b - alpha));
 
-        double gamma = a + 1 / beta;
+        float gamma = a + 1 / beta;
 
         while (true)
         {
             u1 = Random.value;
             u2 = Random.value;
-            v = beta * Math.Log(u1 / (1 - u1));
-            w = a * Math.Exp(v);
+            v = beta * Mathf.Log(u1 / (1 - u1));
+            w = a * Mathf.Exp(v);
 
-            double tmp = Math.Log(alpha / (b + w));
+            float tmp = Mathf.Log(alpha / (b + w));
 
             if (alpha * tmp + (gamma * v) - 1.3862944 >= Mathf.Log(u1 * u1 * u2)) break;
         }
 
-        double x = w / (b + w);
+        float x = w / (b + w);
         return x;
     } 
 
