@@ -12,7 +12,7 @@ public class gun : MonoBehaviour
         if (SceneConstants.type == 1){
             float bhMass = SceneConstants.shootMass;
             GameObject bh = Instantiate(bhPrefab);
-            bh.transform.position = Vector3.zero; 
+            bh.transform.position = shootPoint.transform.position;
             bh.GetComponent<Body>().init(bhMass, shootPoint.transform.forward * SceneConstants.shootSpeed, ApproxMath.schwarzschildRadius(bhMass), 1);
 
         }
