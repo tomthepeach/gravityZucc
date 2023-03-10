@@ -121,7 +121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7558523261523608853}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.031, y: -0.085, z: -1.202}
+  m_LocalPosition: {x: -0.147, y: -0.054, z: -1.202}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -249,7 +249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7558523262892812371}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.587, y: 0.078, z: -1.194}
+  m_LocalPosition: {x: -0.681, y: 0.084, z: -1.194}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -461,6 +461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f533372f6bcf45a49869bb89f91814f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blackholePrefab: {fileID: 5173510674798946185, guid: 900668992900904498bcc2bcb23c9cc3,
+  bhPrefab: {fileID: 5173510674798946185, guid: 900668992900904498bcc2bcb23c9cc3,
     type: 3}
   shootPoint: {fileID: 7558523262892812371}
+  starPrefab: {fileID: 3910284366748954017, guid: 1ba1779268409d14f9b84870b1e0efec,
+    type: 3}
