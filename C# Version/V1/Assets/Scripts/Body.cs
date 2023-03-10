@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Colour = UnityEngine.Color;
+
 
 
 public class Body : MonoBehaviour
@@ -24,6 +26,16 @@ public class Body : MonoBehaviour
 		velocity = inpinitialVelocity;
 		radius = inpRadius;
 		transform.localScale = Vector3.one * inpRadius * 2;
+
+		double bv = ColourTools.bvFromMass((double)inpmass);
+		// Debug.Log(bv);
+
+        Colour starCol = ColourTools.colourFromBV(bv);
+		// Debug.Log(starCol);
+		Material starMat = GetComponent<Renderer>().material;
+		starMat.EnableKeyword("_EMISSION");
+		starMat.SetColor("_EmissionColor", starCol);
+
 		
 	}
 

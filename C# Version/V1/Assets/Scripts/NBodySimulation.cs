@@ -108,7 +108,7 @@ public class NBodySimulation : MonoBehaviour
     // pes.Add(tot_pe);
     // totes.Add(tot_ke + tot_pe);
     avgRadius /= len;
-    Debug.Log(avgRadius);
+    // Debug.Log(avgRadius);
     // Debug.Log(tot_pe);
     tot_ke = 0;
     tot_pe = 0;
