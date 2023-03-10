@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Colour = UnityEngine.Color;
+
 
 public class NBodySimulation : MonoBehaviour
 {
@@ -76,19 +78,34 @@ public class NBodySimulation : MonoBehaviour
                         }
                         else // IF bodya.bh != bodyb.bh
                         {
-                            switch (this_body.blackhole){
-                                
-                                case 0: Combine(other_body, this_body);
-                                    to_destroy.Add(this_body);
-                                    other_body.radius = ApproxMath.schwarzschildRadius(other_body.mass);
-                                    other_body.transform.localScale = Vector3.one * other_body.radius * 2;
-                                    break;
+                            if(other_body.blackhole == 1)
+                            {
+                                Combine(other_body, this_body);
+                                to_destroy.Add(this_body);
+                                other_body.radius = ApproxMath.schwarzschildRadius(other_body.mass);
+                                other_body.transform.localScale = Vector3.one * other_body.radius * 2;
 
-                                case 1: Combine(this_body, other_body);
-                                    to_destroy.Add(other_body);
-                                    this_body.radius = ApproxMath.schwarzschildRadius(this_body.mass);
-                                    this_body.transform.localScale = Vector3.one * this_body.radius * 2;
-                                    break;
+                                double bv = ColourTools.bvFromMass((double)other_body.mass);
+                                Colour starCol = ColourTools.colourFromBV(bv);
+                                Material starMat = other_body.GetComponent<Renderer>().material;
+                                starMat.EnableKeyword("_EMISSION");
+                                starMat.SetColor("_EmissionColor", starCol);
+                            
+                            }
+
+                            else
+                            {
+                                Combine(this_body, other_body);
+                                to_destroy.Add(other_body);
+                                this_body.radius = ApproxMath.schwarzschildRadius(this_body.mass);
+                                this_body.transform.localScale = Vector3.one * this_body.radius * 2;
+
+                                double bv = ColourTools.bvFromMass((double)this_body.mass);
+                                Colour starCol = ColourTools.colourFromBV(bv);
+                                Material starMat = this_body.GetComponent<Renderer>().material;
+                                starMat.EnableKeyword("_EMISSION");
+                                starMat.SetColor("_EmissionColor", starCol);
+                                break;
                                     
                             }
                         }

@@ -31,7 +31,6 @@ public class Body : MonoBehaviour
 		// Debug.Log(bv);
 
         Colour starCol = ColourTools.colourFromBV(bv);
-		// Debug.Log(starCol);
 		Material starMat = GetComponent<Renderer>().material;
 		starMat.EnableKeyword("_EMISSION");
 		starMat.SetColor("_EmissionColor", starCol);
