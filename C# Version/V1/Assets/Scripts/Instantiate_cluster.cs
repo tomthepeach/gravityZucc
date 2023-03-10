@@ -29,7 +29,7 @@ public class Instantiate_cluster : MonoBehaviour
         for (int i = 0; i < starCount; i++)
         {
             float scaler = ApproxMath.beta(2f, 2f*120f/(clusterMass/starCount));
-            float inpmass = scaler * 120f;
+            float inpmass = 0.1f + scaler * 120f;
             float starRadius = 15f * scaler;
 
             Vector3 pos;
