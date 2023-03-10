@@ -119,9 +119,10 @@ public class NBodySimulation : MonoBehaviour
 
     void Combine(Body this_body, Body other_body){
 
-        Vector3 avg_pos = (this_body.transform.position - other_body.transform.position) / 2;
-        this_body.transform.Translate(avg_pos);
+        float distance = Vector3.Distance(this_body.transform.position, other_body.transform.position);
+        Vector3 dir = (other_body.transform.position - this_body.transform.position).normalized;
         float totmass = this_body.mass + other_body.mass;
+        this_body.transform.Translate(dir * distance*this_body.mass/(totmass));
         this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
         this_body.mass = totmass;
 
