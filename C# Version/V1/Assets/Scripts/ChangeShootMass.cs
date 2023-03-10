@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class ChangeNumStars : MonoBehaviour
+public class ChangeShootMass : MonoBehaviour
 {
     [SerializeField] private Slider mySlider;
     [SerializeField] private TextMeshProUGUI mySliderText;
@@ -17,6 +17,6 @@ public class ChangeNumStars : MonoBehaviour
     }
     void Update()
     {
-        SceneConstants.numStars = (int) mySlider.value;
+        SceneConstants.shootMass = (float) mySlider.value;
     }
 }

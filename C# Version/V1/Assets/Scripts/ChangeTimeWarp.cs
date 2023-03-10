@@ -17,6 +17,6 @@ public class ChangeTimeWarp : MonoBehaviour
     }
     void Update()
     {
-        NumStars.timeWarp = (int) mySlider.value;
+        SceneConstants.timeWarp = (int) mySlider.value;
     }
 }
