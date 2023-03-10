@@ -5,19 +5,19 @@ using UnityEngine;
 public class GunCommands : MonoBehaviour
 {
     public GameObject gunPrefab;
-    
+    public GameObject rightHand;
 
     public void SpawnGun()
     {
         GameObject Gun = Instantiate(gunPrefab);
-        Gun.transform.position = this.transform.position;
+        Gun.transform.position = rightHand.transform.position;
     }
 
     public void ClearGuns(){
         gun[] allObjects = FindObjectsOfType<gun>();
         foreach(gun obj in allObjects) {
             
-            Destroy(obj);
+            Destroy(obj.gameObject);
         }
     }
 }

@@ -8,8 +8,7 @@ public class ChangeGunType : MonoBehaviour
 {
     [SerializeField] private Slider mySlider;
 
-    
-    void Update()
+        void Update()
     {
         SceneConstants.type = (int) mySlider.value;
     }
