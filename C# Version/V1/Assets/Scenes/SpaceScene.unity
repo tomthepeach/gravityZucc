@@ -2692,7 +2692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63a05fde9537f8448f7dfb856dd9415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 7558523262915080411, guid: fa5d3a1a2921aad4b86e3944c7a68089,
+  gunPrefab: {fileID: 6607865896316872678, guid: 60792419e9e6e2b429921c109055a49c,
     type: 3}
   rightHand: {fileID: 1575259706}
 --- !u!114 &1255494837
@@ -4527,7 +4527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63a05fde9537f8448f7dfb856dd9415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 7558523262915080411, guid: fa5d3a1a2921aad4b86e3944c7a68089,
+  gunPrefab: {fileID: 6607865896316872678, guid: 60792419e9e6e2b429921c109055a49c,
     type: 3}
   rightHand: {fileID: 1575259706}
 --- !u!114 &1962363588
