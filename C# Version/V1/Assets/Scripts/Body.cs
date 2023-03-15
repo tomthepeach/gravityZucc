@@ -78,7 +78,7 @@ public class Body : MonoBehaviour
 
 	public void UpdatePosition()
 	{
-		// Debug.Log(velocity);
+
 		transform.Translate(velocity * Time.deltaTime);
 	}
 
