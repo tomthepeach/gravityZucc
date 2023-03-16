@@ -37,7 +37,6 @@ public class NBodySimulation : MonoBehaviour
 
         foreach (Body body in bodies)
         {
-            // Debug.Log("update pos");
             body.UpdatePosition();
         }
 
@@ -59,6 +58,7 @@ public class NBodySimulation : MonoBehaviour
 
                     float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);
                     avgRadius += r;
+
 
                     if (r < this_body.radius || r < other_body.radius)
                     {   
@@ -127,16 +127,13 @@ public class NBodySimulation : MonoBehaviour
         float distance = Vector3.Distance(this_body.transform.position, other_body.transform.position);
         Vector3 dir = (this_body.transform.position - other_body.transform.position).normalized;
         float totmass = this_body.mass + other_body.mass;
-        this_body.transform.Translate(dir * distance*this_body.mass/(totmass));
+
+        //this_body.transform.Translate(dir * distance*this_body.mass/(totmass));
+        this_body.transform.Translate(dir * distance/this_body.radius);
+
         this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
         this_body.mass = totmass;
-
-        //GetComponent<Renderer>().material.BaseColor = new Color(0, 255, 0);
        
     }
-
-
-
-
 
 }
