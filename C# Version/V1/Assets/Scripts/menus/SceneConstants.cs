@@ -10,5 +10,4 @@ public class SceneConstants : MonoBehaviour
     public static int shootSpeed = 100;
     public static float shootMass = 10f;
     public static int type = 0;
-    //public static float bigG = 40f;
 }

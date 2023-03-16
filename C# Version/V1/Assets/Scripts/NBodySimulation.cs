@@ -6,11 +6,7 @@ using Colour = UnityEngine.Color;
 
 public class NBodySimulation : MonoBehaviour
 {
-
-
-
     public float timewarp = 1f;
-
     public GameObject bhPrefab;
 
     List<Body> bodies;
@@ -24,24 +20,21 @@ public class NBodySimulation : MonoBehaviour
         InvokeRepeating("logData", 0.0f, 1.0f);
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         Body[] bodyarr = FindObjectsOfType<Body>();
         bodies = new List<Body>(bodyarr);
-
 
         foreach (Body body in bodies)
         {
             body.UpdateVelocity(bodies);
         }
 
-
         foreach (Body body in bodies)
         {
             body.UpdatePosition();
         }
-
 
         List<Body> to_destroy = new List<Body>();
         int len = bodies.Count;
@@ -88,6 +81,7 @@ public class NBodySimulation : MonoBehaviour
                                 Material starMat = other_body.GetComponent<Renderer>().material;
                                 starMat.EnableKeyword("_EMISSION");
                                 starMat.SetColor("_EmissionColor", starCol);
+                                starMat.SetFloat("_Luminosity", 1000000f);
                             
                             }
 
@@ -119,8 +113,6 @@ public class NBodySimulation : MonoBehaviour
         }
 
     }
-
-
 
     void Combine(Body this_body, Body other_body){
 

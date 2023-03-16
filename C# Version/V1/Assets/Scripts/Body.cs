@@ -10,7 +10,7 @@ public class Body : MonoBehaviour
 	public Vector3 netForce = Vector3.zero;
 	public Vector3 velocity = Vector3.zero;
 
-	public int blackhole = 0; // 1 for bh. 0 for star
+	public int blackhole = 0; // Blackhole = 1 : Star = 0
 
 	public float mass = 1;
 
@@ -32,10 +32,10 @@ public class Body : MonoBehaviour
 		starMat.EnableKeyword("_EMISSION");
 		starMat.SetColor("_EmissionColor", starCol);
 
+
 		
 	}
 
-	// Update is called once per frame
 	public void UpdateVelocity(List<Body> Bodies)
 	{
         netForce = Vector3.zero;
@@ -59,7 +59,6 @@ public class Body : MonoBehaviour
 			}
 		}
 		
-		
 		netForce *= (Constants.BIGG);
 
         velocity += netForce/mass * Time.fixedDeltaTime;
@@ -71,5 +70,18 @@ public class Body : MonoBehaviour
 		// Debug.Log(velocity);
 		transform.Translate(velocity * Time.fixedDeltaTime);
 	}
+
+
+	// //Put this into update 
+	// public void ControlLuminosity(){ 
+	// 	Material starMat = GetComponent<Renderer>().material;
+	// 	float threshold = 1000f;
+
+	// 	while (starMat._Luminosity > threshold){
+	// 		InvokeRepeating("reduceLumin",2);
+	// 	}
+
+	// }
+
 
 }
