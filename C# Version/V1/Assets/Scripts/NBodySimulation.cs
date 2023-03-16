@@ -7,20 +7,19 @@ using Colour = UnityEngine.Color;
 public class NBodySimulation : MonoBehaviour
 {
 
-    // public List<float> kes;
-    // public List<float> pes;
-    // public List<float> totes;
 
-    float tot_ke;
-    float tot_pe;
+
+    public float timewarp = 1f;
 
     public GameObject bhPrefab;
-    
+
     List<Body> bodies;
     // Start is called before the first frame update
     void Awake()
     {
-
+        DataController DC = new DataController();
+        Time.timeScale = timewarp;
+        Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
     }
 
     // Update is called once per frame
@@ -32,9 +31,6 @@ public class NBodySimulation : MonoBehaviour
 
         foreach (Body body in bodies)
         {
-            // Debug.Log("update vel");
-            tot_ke += body.ke;
-            tot_pe += body.pe;
             body.UpdateVelocity(bodies);
         }
 
@@ -121,14 +117,6 @@ public class NBodySimulation : MonoBehaviour
         }
 
 
-    // kes.Add(tot_ke);
-    // pes.Add(tot_pe);
-    // totes.Add(tot_ke + tot_pe);
-    avgRadius /= len;
-    // Debug.Log(avgRadius);
-    // Debug.Log(tot_pe);
-    tot_ke = 0;
-    tot_pe = 0;
 
     }
 

@@ -71,7 +71,7 @@ public class Body : MonoBehaviour
 
 		netForce *= (Constants.BIGG);
 
-        velocity += netForce/mass * Time.deltaTime;
+        velocity += netForce/mass * Time.fixedDeltaTime;
              
         netForce = Vector3.zero;
 	}
@@ -79,7 +79,7 @@ public class Body : MonoBehaviour
 	public void UpdatePosition()
 	{
 		// Debug.Log(velocity);
-		transform.Translate(velocity * Time.deltaTime);
+		transform.Translate(velocity * Time.fixedDeltaTime);
 	}
 
 }

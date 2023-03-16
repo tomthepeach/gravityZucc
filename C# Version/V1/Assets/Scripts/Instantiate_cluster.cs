@@ -11,7 +11,6 @@ public class Instantiate_cluster : MonoBehaviour
 
     public int starCount = 100;
     public float clusterRadius = 1000f;
-    public float timewarp = 1f;
     public float clusterMass = 1000.0f;
     public float bhMass = 100.0f;
     
@@ -19,8 +18,6 @@ public class Instantiate_cluster : MonoBehaviour
     {
 
         //starCount =  NumStars.numStars;
-        Time.timeScale = timewarp;
-        Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
 
         GameObject bh = Instantiate(bhPrefab);
         bh.transform.position = Vector3.zero; 
