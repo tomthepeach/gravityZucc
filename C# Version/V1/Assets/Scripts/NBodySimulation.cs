@@ -7,13 +7,6 @@ using Colour = UnityEngine.Color;
 public class NBodySimulation : MonoBehaviour
 {
 
-    // public List<float> kes;
-    // public List<float> pes;
-    // public List<float> totes;
-
-    float tot_ke;
-    float tot_pe;
-
     public GameObject bhPrefab;
     
     List<Body> bodies;
@@ -32,16 +25,12 @@ public class NBodySimulation : MonoBehaviour
 
         foreach (Body body in bodies)
         {
-            // Debug.Log("update vel");
-            tot_ke += body.ke;
-            tot_pe += body.pe;
             body.UpdateVelocity(bodies);
         }
 
 
         foreach (Body body in bodies)
         {
-            // Debug.Log("update pos");
             body.UpdatePosition();
         }
 
@@ -63,6 +52,7 @@ public class NBodySimulation : MonoBehaviour
 
                     float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);
                     avgRadius += r;
+
 
                     if (r < this_body.radius || r < other_body.radius)
                     {   
@@ -120,16 +110,6 @@ public class NBodySimulation : MonoBehaviour
             Destroy(_body.gameObject, 0);
         }
 
-
-    // kes.Add(tot_ke);
-    // pes.Add(tot_pe);
-    // totes.Add(tot_ke + tot_pe);
-    avgRadius /= len;
-    // Debug.Log(avgRadius);
-    // Debug.Log(tot_pe);
-    tot_ke = 0;
-    tot_pe = 0;
-
     }
 
 
@@ -139,16 +119,13 @@ public class NBodySimulation : MonoBehaviour
         float distance = Vector3.Distance(this_body.transform.position, other_body.transform.position);
         Vector3 dir = (this_body.transform.position - other_body.transform.position).normalized;
         float totmass = this_body.mass + other_body.mass;
-        this_body.transform.Translate(dir * distance*this_body.mass/(totmass));
+
+        //this_body.transform.Translate(dir * distance*this_body.mass/(totmass));
+        this_body.transform.Translate(dir * distance/this_body.radius);
+
         this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
         this_body.mass = totmass;
-
-        //GetComponent<Renderer>().material.BaseColor = new Color(0, 255, 0);
        
     }
-
-
-
-
 
 }

@@ -4150,7 +4150,7 @@ MonoBehaviour:
     type: 3}
   starCount: 110
   clusterRadius: 500
-  timewarp: 1
+  timewarp: 5
   clusterMass: 1000
   bhMass: 1000
 --- !u!1 &1717162957

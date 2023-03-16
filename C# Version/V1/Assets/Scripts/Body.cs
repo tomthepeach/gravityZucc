@@ -9,9 +9,6 @@ public class Body : MonoBehaviour
 {
 	public Vector3 netForce = Vector3.zero;
 	public Vector3 velocity = Vector3.zero;
-	float scalar_vel;
-	public float ke;
-	public float pe;
 
 	public int blackhole = 0; // 1 for bh. 0 for star
 
@@ -41,9 +38,6 @@ public class Body : MonoBehaviour
 	// Update is called once per frame
 	public void UpdateVelocity(List<Body> Bodies)
 	{
-		Vector3 peV = Vector3.zero;
-		float scalar_vel = velocity.magnitude;
-		ke = scalar_vel * scalar_vel * 0.5f * mass;
 
 		foreach (Body _body in Bodies)
 		{
@@ -61,18 +55,14 @@ public class Body : MonoBehaviour
 
 				Vector3 F = (dir * F_amp);
 				netForce += F;
-				peV += F * r;
 			}
 		}
 		
-		peV *= Constants.BIGG;
-
-		pe = -peV.magnitude;
-
+		
 		netForce *= (Constants.BIGG);
 
         velocity += netForce/mass * Time.deltaTime;
-             
+        
         netForce = Vector3.zero;
 	}
 
