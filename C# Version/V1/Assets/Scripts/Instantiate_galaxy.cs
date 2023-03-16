@@ -18,7 +18,6 @@ public class Instantiate_galaxy : MonoBehaviour
     public float velocityCap = 500f;
     public float velocityScaler = 1f;
 
-    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < starCount/4; i++)

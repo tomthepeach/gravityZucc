@@ -6,11 +6,10 @@ using Colour = UnityEngine.Color;
 
 public class NBodySimulation : MonoBehaviour
 {
-    public float timewarp = 1f; // = SceneConstants.timeWarp;
+    public float timewarp = 1f;
     public GameObject bhPrefab;
 
     List<Body> bodies;
-    // Start is called before the first frame update
     void Awake()
     {
 
@@ -22,7 +21,7 @@ public class NBodySimulation : MonoBehaviour
         Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         Body[] bodyarr = FindObjectsOfType<Body>();
@@ -114,8 +113,6 @@ public class NBodySimulation : MonoBehaviour
         }
 
     }
-
-
 
     void Combine(Body this_body, Body other_body){
 

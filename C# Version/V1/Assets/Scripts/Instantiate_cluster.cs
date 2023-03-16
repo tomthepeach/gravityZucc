@@ -14,7 +14,7 @@ public class Instantiate_cluster : MonoBehaviour
     public float clusterMass = 1000.0f;
     public float bhMass = 100.0f;
     
-    void Awake()
+    void Start()
     {
         //Uncomment this when building for headset
         //starCount =  NumStars.numStars;

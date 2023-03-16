@@ -37,6 +37,27 @@ public class DataController
         writer.Close();
     }
 
+
+    // public void SaveFPSData()
+    // {
+    //     DateTime currentDateTime = DateTime.Now;
+
+    //     // Save data to file
+    //     StreamWriter writer = new StreamWriter("fps_data_" + currentDateTime.ToString("yyyy-MM-dd_HH-mm-ss") + ".csv");
+    //     writer.WriteLine("time,numberOfStars,FPS");
+
+    //     for(int i=0; i < times.Count; i++)
+    //     {
+    //         string line = string.Join(",", times[i], numberOfStars[i], FPS[i]);
+    //             writer.WriteLine(line);
+    //     }
+
+    //     writer.Flush();
+    //     writer.Close();
+    // }
+
+
+
 //     public void AddData(float time, List<Body> bodies)
 //     {
 

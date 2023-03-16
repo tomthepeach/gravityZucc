@@ -10,7 +10,7 @@ public class Body : MonoBehaviour
 	public Vector3 netForce = Vector3.zero;
 	public Vector3 velocity = Vector3.zero;
 
-	public int blackhole = 0; // 1 for bh. 0 for star
+	public int blackhole = 0; // Blackhole = 1 : Star = 0
 
 	public float mass = 1;
 
@@ -35,7 +35,6 @@ public class Body : MonoBehaviour
 		
 	}
 
-	// Update is called once per frame
 	public void UpdateVelocity(List<Body> Bodies)
 	{
 
