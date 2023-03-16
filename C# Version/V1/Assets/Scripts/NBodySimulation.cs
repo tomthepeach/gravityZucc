@@ -82,6 +82,7 @@ public class NBodySimulation : MonoBehaviour
                                 Material starMat = other_body.GetComponent<Renderer>().material;
                                 starMat.EnableKeyword("_EMISSION");
                                 starMat.SetColor("_EmissionColor", starCol);
+                                starMat.SetFloat("_Luminosity", 1000000f);
                             
                             }
 
@@ -126,6 +127,10 @@ public class NBodySimulation : MonoBehaviour
         this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
         this_body.mass = totmass;
        
+    }
+
+    void Supernova(){
+        
     }
 
 }

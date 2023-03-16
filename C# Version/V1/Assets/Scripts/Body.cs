@@ -32,6 +32,7 @@ public class Body : MonoBehaviour
 		starMat.EnableKeyword("_EMISSION");
 		starMat.SetColor("_EmissionColor", starCol);
 
+
 		
 	}
 
@@ -67,5 +68,18 @@ public class Body : MonoBehaviour
 		// Debug.Log(velocity);
 		transform.Translate(velocity * Time.fixedDeltaTime);
 	}
+
+
+	// //Put this into update 
+	// public void ControlLuminosity(){ 
+	// 	Material starMat = GetComponent<Renderer>().material;
+	// 	float threshold = 1000f;
+
+	// 	while (starMat._Luminosity > threshold){
+	// 		InvokeRepeating("reduceLumin",2);
+	// 	}
+
+	// }
+
 
 }
