@@ -15,11 +15,13 @@ public class NBodySimulation : MonoBehaviour
 
     List<Body> bodies;
     // Start is called before the first frame update
-    void Awake()
+    DataController DC = new DataController();
+
+    void Start()
     {
-        DataController DC = new DataController();
         Time.timeScale = timewarp;
         Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
+        InvokeRepeating("logData", 0.0f, 1.0f);
     }
 
     // Update is called once per frame
@@ -116,8 +118,6 @@ public class NBodySimulation : MonoBehaviour
             Destroy(_body.gameObject, 0);
         }
 
-
-
     }
 
 
@@ -134,6 +134,16 @@ public class NBodySimulation : MonoBehaviour
         this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
         this_body.mass = totmass;
        
+    }
+
+    void logData()
+    {
+        DC.LogData(Time.time,bodies);
+    }
+
+    void OnApplicationQuit()
+    {
+        DC.SaveData();
     }
 
 }

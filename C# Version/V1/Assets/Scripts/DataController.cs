@@ -14,6 +14,7 @@ public class DataController
 
     public void SaveData()
     {
+        Debug.Log("Saving data to file..."+ Directory.GetCurrentDirectory());
         DateTime currentDateTime = DateTime.Now;
 
         // Save data to file
@@ -33,8 +34,25 @@ public class DataController
         writer.Close();
     }
 
-//     public void AddData(float time, List<Body> bodies)
-//     {
+    public void LogData(float time, List<Body> bodies)
+    {
+        times.Add(time);
+        List<Vector3> pos = new List<Vector3>();
+        List<Vector3> vel = new List<Vector3>();
+        List<Vector3> force = new List<Vector3>();
+        List<float> mass = new List<float>();
 
-//     }
+        foreach (Body body in bodies)
+        {
+            pos.Add(body.transform.position);
+            vel.Add(body.velocity);
+            force.Add(body.netForce);
+            mass.Add(body.mass);
+        }
+
+        positions.Add(pos);
+        velocities.Add(vel);
+        forces.Add(force);
+        masses.Add(mass);
+    }
 }

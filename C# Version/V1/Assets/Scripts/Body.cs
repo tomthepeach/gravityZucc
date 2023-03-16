@@ -38,6 +38,7 @@ public class Body : MonoBehaviour
 	// Update is called once per frame
 	public void UpdateVelocity(List<Body> Bodies)
 	{
+        netForce = Vector3.zero;
 
 		foreach (Body _body in Bodies)
 		{
@@ -63,7 +64,6 @@ public class Body : MonoBehaviour
 
         velocity += netForce/mass * Time.fixedDeltaTime;
              
-        netForce = Vector3.zero;
 	}
 
 	public void UpdatePosition()
