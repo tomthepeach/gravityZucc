@@ -58,11 +58,8 @@ public class Body : MonoBehaviour
 			}
 		}
 		
-		
 		netForce *= (Constants.BIGG);
-
-        velocity += netForce/mass * Time.fixedDeltaTime;
-             
+        velocity += netForce/mass * Time.fixedDeltaTime; 
         netForce = Vector3.zero;
 	}
 

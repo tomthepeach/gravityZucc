@@ -12,6 +12,10 @@ public class DataController
     public List<List<float>> masses = new List<List<float>>();
     public List<float> times = new List<float>();
 
+    // For fps vs starcount graphs
+    //public List<float> FPS = new List<float>();
+    //public List<int> numberOfStars = new List<int>();
+
     public void SaveData()
     {
         DateTime currentDateTime = DateTime.Now;

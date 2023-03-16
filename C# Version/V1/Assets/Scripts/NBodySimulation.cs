@@ -6,17 +6,17 @@ using Colour = UnityEngine.Color;
 
 public class NBodySimulation : MonoBehaviour
 {
-
-
-
-    public float timewarp = 1f;
-
+    public float timewarp = 1f; // = SceneConstants.timeWarp;
     public GameObject bhPrefab;
 
     List<Body> bodies;
     // Start is called before the first frame update
     void Awake()
     {
+
+        //Uncomment this when building for headset
+        //timewarp = SceneConstants.timeWarp;
+
         DataController DC = new DataController();
         Time.timeScale = timewarp;
         Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
@@ -28,18 +28,15 @@ public class NBodySimulation : MonoBehaviour
         Body[] bodyarr = FindObjectsOfType<Body>();
         bodies = new List<Body>(bodyarr);
 
-
         foreach (Body body in bodies)
         {
             body.UpdateVelocity(bodies);
         }
 
-
         foreach (Body body in bodies)
         {
             body.UpdatePosition();
         }
-
 
         List<Body> to_destroy = new List<Body>();
         int len = bodies.Count;
@@ -115,8 +112,6 @@ public class NBodySimulation : MonoBehaviour
             bodies.Remove(_body);
             Destroy(_body.gameObject, 0);
         }
-
-
 
     }
 
