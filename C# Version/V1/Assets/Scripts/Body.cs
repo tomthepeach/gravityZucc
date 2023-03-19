@@ -15,7 +15,6 @@ public class Body : MonoBehaviour
 	public float mass = 1;
 
 	public float radius = 1;
-	Material starMat = GetComponent<Renderer>().material;
 
 
 	public void init(float inpmass, Vector3 inpinitialVelocity, float inpRadius, int bh)
@@ -28,7 +27,7 @@ public class Body : MonoBehaviour
 
 		double bv = ColourTools.bvFromMass((double)inpmass);
 		// Debug.Log(bv);
-
+		Material starMat = GetComponent<Renderer>().material;
         Colour starCol = ColourTools.colourFromBV(bv);
 		starMat.EnableKeyword("_EMISSION");
 		starMat.SetColor("_EmissionColor", starCol);

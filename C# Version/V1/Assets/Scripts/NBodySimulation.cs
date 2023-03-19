@@ -32,25 +32,24 @@ public class NBodySimulation : MonoBehaviour
     {
         Body[] bodyarr = FindObjectsOfType<Body>();
         bodies = new List<Body>(bodyarr);
-        bodylen = bodies.Count;
+        int bodiesLen = bodies.Count;
 
-        for (int i=0; i < bodylen; i++)
+        for (int i=0; i < bodiesLen; i++)
         {
-            body[i].UpdateVelocity(bodies);
+            bodies[i].UpdateVelocity(bodies);
         }
 
-        for (int i=0; i < bodylen; i++)
+        for (int i=0; i < bodiesLen; i++)
         {
-            body[i].UpdatePosition();
+            bodies[i].UpdatePosition();
         }
 
         List<Body> toDestroy = new List<Body>();
-        int len = bodies.Count;
         float avgRadius = 0;
 
-        for(int i=0; i<len;i++)
+        for(int i=0; i<bodiesLen;i++)
         {
-            for (int j = i + 1; j < len; j++)
+            for (int j = i + 1; j < bodiesLen; j++)
             {
                 Body this_body = bodies[i];
                 Body other_body = bodies[j];
@@ -116,7 +115,8 @@ public class NBodySimulation : MonoBehaviour
 
         for (int i=0; i < toDestroy.Count; i++)
         {
-            bodies.Remove(toDestroy[i]);
+            Body _body = toDestroy[i];
+            bodies.Remove(_body);
             Destroy(_body.gameObject, 0);
         }
 
