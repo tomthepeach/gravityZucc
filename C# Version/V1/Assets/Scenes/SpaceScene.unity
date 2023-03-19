@@ -995,6 +995,7 @@ MonoBehaviour:
   timewarp: 1
   bhPrefab: {fileID: 5173510674798946185, guid: 900668992900904498bcc2bcb23c9cc3,
     type: 3}
+  collectData: 0
 --- !u!4 &278253148
 Transform:
   m_ObjectHideFlags: 0
@@ -1726,8 +1727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5413af7bbf54e4496f4d0522f1ab18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputActions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
-    type: 3}
 --- !u!114 &879881353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2693,9 +2692,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63a05fde9537f8448f7dfb856dd9415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 6607865896316872678, guid: 60792419e9e6e2b429921c109055a49c,
-    type: 3}
-  rightHand: {fileID: 1575259706}
 --- !u!114 &1255494837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2903,6 +2899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackingType: 0
   m_UpdateType: 0
+  m_IgnoreTrackingState: 0
   m_PositionInput:
     m_UseReference: 0
     m_Action:
@@ -2957,6 +2954,18 @@ MonoBehaviour:
         m_Groups: 
         m_Action: Rotation
         m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_TrackingStateInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_PositionAction:
@@ -4150,7 +4159,7 @@ MonoBehaviour:
     type: 3}
   bhPrefab: {fileID: 5173510674798946185, guid: 900668992900904498bcc2bcb23c9cc3,
     type: 3}
-  starCount: 120
+  starCount: 200
   clusterRadius: 500
   clusterMass: 1000
   bhMass: 1000
@@ -4308,7 +4317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae9421891dd3c6448c4f1eb5e54f59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateDelay: 1
 --- !u!1 &1933129457
 GameObject:
   m_ObjectHideFlags: 0
@@ -4573,9 +4581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63a05fde9537f8448f7dfb856dd9415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 6607865896316872678, guid: 60792419e9e6e2b429921c109055a49c,
-    type: 3}
-  rightHand: {fileID: 1575259706}
 --- !u!114 &1962363588
 MonoBehaviour:
   m_ObjectHideFlags: 0

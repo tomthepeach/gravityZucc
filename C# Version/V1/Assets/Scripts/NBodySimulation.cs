@@ -8,6 +8,7 @@ public class NBodySimulation : MonoBehaviour
 {
     public float timewarp = 1f;
     public GameObject bhPrefab;
+    public bool collectData = false;
 
     List<Body> bodies;
     // Start is called before the first frame update
@@ -17,7 +18,10 @@ public class NBodySimulation : MonoBehaviour
     {
         Time.timeScale = timewarp;
         Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
-        InvokeRepeating("logData", 0.0f, 1.0f);
+        if  (collectData)
+        {
+            InvokeRepeating("logData", 0.0f, 1.0f);
+        }
     }
 
 
@@ -135,7 +139,10 @@ public class NBodySimulation : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        DC.SaveData();
+        if (collectData)
+        {
+            DC.SaveData();
+        }
     }
 
 }
