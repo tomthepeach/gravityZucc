@@ -50,7 +50,7 @@ public class Body : MonoBehaviour
 				float r = Vector3.Distance(transform.position, _body.transform.position);
 
 				// part of grav formula
-				float F_amp = (mass * _body.mass) / r * r;
+				float F_amp = (mass * _body.mass) / (r * r);
 				
 				// dir 
 				Vector3 dir = Vector3.Normalize(_body.transform.position - transform.position);

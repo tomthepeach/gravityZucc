@@ -18,6 +18,9 @@ public class NBodySimulation : MonoBehaviour
     {
         Time.timeScale = timewarp;
         Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
+
+        Debug.Log("Time Scale: " + Time.timeScale);
+        Debug.Log("Fixed Delta Time: " + Time.fixedDeltaTime);
         if  (collectData)
         {
             InvokeRepeating("logData", 0.0f, 1.0f);
