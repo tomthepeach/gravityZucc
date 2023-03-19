@@ -16,6 +16,8 @@ public class Body : MonoBehaviour
 
 	public float radius = 1;
 
+	private Vector3 position;
+
 
 	public void init(float inpmass, Vector3 inpinitialVelocity, float inpRadius, int bh)
 	{
@@ -24,6 +26,7 @@ public class Body : MonoBehaviour
 		velocity = inpinitialVelocity;
 		radius = inpRadius;
 		transform.localScale = Vector3.one * inpRadius * 2;
+		position = transform.position;
 
 		double bv = ColourTools.bvFromMass((double)inpmass);
 		// Debug.Log(bv);
@@ -41,18 +44,27 @@ public class Body : MonoBehaviour
 		{
 			Body _body = Bodies[i];
 
+			// if (_body != this)
+			// {
+			// 	// distance between bodies
+			// 	float r = Vector3.Distance(this.position, _body.position);
+
+			// 	// part of grav formula
+			// 	float F_amp = (mass * _body.mass) / (r * r);
+				
+			// 	// dir 
+			// 	Vector3 dir = Vector3.Normalize(_body.position - this.position);
+
+			// 	Vector3 F = (dir * F_amp);
+			// 	netForce += F;
+			// }
+
 			if (_body != this)
 			{
 				// distance between bodies
-				float r = Vector3.Distance(transform.position, _body.transform.position);
-
+				float r = Vector3.Distance(this.position, _body.position);
 				// part of grav formula
-				float F_amp = (mass * _body.mass) / (r * r);
-				
-				// dir 
-				Vector3 dir = Vector3.Normalize(_body.transform.position - transform.position);
-
-				Vector3 F = (dir * F_amp);
+				Vector3 F = (mass * _body.mass) * ( this.position - _body.position) / (r * r * r);
 				netForce += F;
 			}
 		}
