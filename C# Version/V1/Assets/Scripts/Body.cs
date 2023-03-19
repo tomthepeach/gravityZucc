@@ -44,21 +44,6 @@ public class Body : MonoBehaviour
 		{
 			Body _body = Bodies[i];
 
-			// if (_body != this)
-			// {
-			// 	// distance between bodies
-			// 	float r = Vector3.Distance(this.position, _body.position);
-
-			// 	// part of grav formula
-			// 	float F_amp = (mass * _body.mass) / (r * r);
-				
-			// 	// dir 
-			// 	Vector3 dir = Vector3.Normalize(_body.position - this.position);
-
-			// 	Vector3 F = (dir * F_amp);
-			// 	netForce += F;
-			// }
-
 			if (_body != this)
 			{
 				// distance between bodies
