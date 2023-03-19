@@ -32,18 +32,19 @@ public class NBodySimulation : MonoBehaviour
     {
         Body[] bodyarr = FindObjectsOfType<Body>();
         bodies = new List<Body>(bodyarr);
+        bodylen = bodies.Count;
 
-        foreach (Body body in bodies)
+        for (int i=0; i < bodylen; i++)
         {
-            body.UpdateVelocity(bodies);
+            body[i].UpdateVelocity(bodies);
         }
 
-        foreach (Body body in bodies)
+        for (int i=0; i < bodylen; i++)
         {
-            body.UpdatePosition();
+            body[i].UpdatePosition();
         }
 
-        List<Body> to_destroy = new List<Body>();
+        List<Body> toDestroy = new List<Body>();
         int len = bodies.Count;
         float avgRadius = 0;
 
@@ -70,7 +71,7 @@ public class NBodySimulation : MonoBehaviour
                             Combine(this_body, other_body);
                             this_body.radius = ApproxMath.combinedSphereRadius(this_body.radius, other_body.radius);
                             this_body.transform.localScale = Vector3.one * this_body.radius * 2;
-                            to_destroy.Add(other_body);
+                            toDestroy.Add(other_body);
 
                             
                         }
@@ -79,7 +80,7 @@ public class NBodySimulation : MonoBehaviour
                             if(other_body.blackhole == 1)
                             {
                                 Combine(other_body, this_body);
-                                to_destroy.Add(this_body);
+                                toDestroy.Add(this_body);
                                 other_body.radius = ApproxMath.schwarzschildRadius(other_body.mass);
                                 other_body.transform.localScale = Vector3.one * other_body.radius * 2;
 
@@ -95,7 +96,7 @@ public class NBodySimulation : MonoBehaviour
                             else
                             {
                                 Combine(this_body, other_body);
-                                to_destroy.Add(other_body);
+                                toDestroy.Add(other_body);
                                 this_body.radius = ApproxMath.schwarzschildRadius(this_body.mass);
                                 this_body.transform.localScale = Vector3.one * this_body.radius * 2;
 
@@ -113,9 +114,9 @@ public class NBodySimulation : MonoBehaviour
             }
         }
 
-        foreach (Body _body in to_destroy)
+        for (int i=0; i < toDestroy.Count; i++)
         {
-            bodies.Remove(_body);
+            bodies.Remove(toDestroy[i]);
             Destroy(_body.gameObject, 0);
         }
 
@@ -132,7 +133,6 @@ public class NBodySimulation : MonoBehaviour
 
         this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
         this_body.mass = totmass;
-       
     }
 
     void logData()
