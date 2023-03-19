@@ -11,16 +11,13 @@ public class Instantiate_cluster : MonoBehaviour
 
     public int starCount = 100;
     public float clusterRadius = 1000f;
-    public float timewarp = 1f;
     public float clusterMass = 1000.0f;
     public float bhMass = 100.0f;
     
-    void Start()
+    void Awake()
     {
-
+        //Uncomment this when building for headset
         //starCount =  NumStars.numStars;
-        Time.timeScale = timewarp;
-        Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
 
         GameObject bh = Instantiate(bhPrefab);
         bh.transform.position = Vector3.zero; 
@@ -40,9 +37,9 @@ public class Instantiate_cluster : MonoBehaviour
             // float velMag = 0f;
 
 
-            GameObject star3 = Instantiate(starPrefab);
-            star3.transform.position = pos;
-            star3.GetComponent<Body>().init(inpmass, velMag * velDir, starRadius,0);
+            GameObject star = Instantiate(starPrefab);
+            star.transform.position = pos;
+            star.GetComponent<Body>().init(inpmass, velMag * velDir, starRadius,0);
 
         }
     }

@@ -6,45 +6,35 @@ using Colour = UnityEngine.Color;
 
 public class NBodySimulation : MonoBehaviour
 {
-
-    // public List<float> kes;
-    // public List<float> pes;
-    // public List<float> totes;
-
-    float tot_ke;
-    float tot_pe;
-
+    public float timewarp = 1f;
     public GameObject bhPrefab;
-    
+
     List<Body> bodies;
     // Start is called before the first frame update
-    void Awake()
-    {
+    DataController DC = new DataController();
 
+    void Start()
+    {
+        Time.timeScale = timewarp;
+        Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
+        InvokeRepeating("logData", 0.0f, 1.0f);
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         Body[] bodyarr = FindObjectsOfType<Body>();
         bodies = new List<Body>(bodyarr);
 
-
         foreach (Body body in bodies)
         {
-            // Debug.Log("update vel");
-            tot_ke += body.ke;
-            tot_pe += body.pe;
             body.UpdateVelocity(bodies);
         }
 
-
         foreach (Body body in bodies)
         {
-            // Debug.Log("update pos");
             body.UpdatePosition();
         }
-
 
         List<Body> to_destroy = new List<Body>();
         int len = bodies.Count;
@@ -63,6 +53,7 @@ public class NBodySimulation : MonoBehaviour
 
                     float r = Vector3.Distance(this_body.transform.position, other_body.transform.position);
                     avgRadius += r;
+
 
                     if (r < this_body.radius || r < other_body.radius)
                     {   
@@ -90,6 +81,7 @@ public class NBodySimulation : MonoBehaviour
                                 Material starMat = other_body.GetComponent<Renderer>().material;
                                 starMat.EnableKeyword("_EMISSION");
                                 starMat.SetColor("_EmissionColor", starCol);
+                                starMat.SetFloat("_Luminosity", 1000000f);
                             
                             }
 
@@ -120,35 +112,30 @@ public class NBodySimulation : MonoBehaviour
             Destroy(_body.gameObject, 0);
         }
 
-
-    // kes.Add(tot_ke);
-    // pes.Add(tot_pe);
-    // totes.Add(tot_ke + tot_pe);
-    avgRadius /= len;
-    // Debug.Log(avgRadius);
-    // Debug.Log(tot_pe);
-    tot_ke = 0;
-    tot_pe = 0;
-
     }
-
-
 
     void Combine(Body this_body, Body other_body){
 
         float distance = Vector3.Distance(this_body.transform.position, other_body.transform.position);
         Vector3 dir = (this_body.transform.position - other_body.transform.position).normalized;
         float totmass = this_body.mass + other_body.mass;
-        this_body.transform.Translate(dir * distance*this_body.mass/(totmass));
+
+        //this_body.transform.Translate(dir * distance*this_body.mass/(totmass));
+        this_body.transform.Translate(dir * distance/this_body.radius);
+
         this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
         this_body.mass = totmass;
-
-        //GetComponent<Renderer>().material.BaseColor = new Color(0, 255, 0);
        
     }
 
+    void logData()
+    {
+        DC.LogData(Time.time,bodies);
+    }
 
-
-
+    void OnApplicationQuit()
+    {
+        DC.SaveData();
+    }
 
 }
