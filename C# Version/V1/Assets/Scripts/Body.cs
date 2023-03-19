@@ -15,6 +15,8 @@ public class Body : MonoBehaviour
 	public float mass = 1;
 
 	public float radius = 1;
+	Material starMat = GetComponent<Renderer>().material;
+
 
 	public void init(float inpmass, Vector3 inpinitialVelocity, float inpRadius, int bh)
 	{
@@ -28,12 +30,8 @@ public class Body : MonoBehaviour
 		// Debug.Log(bv);
 
         Colour starCol = ColourTools.colourFromBV(bv);
-		Material starMat = GetComponent<Renderer>().material;
 		starMat.EnableKeyword("_EMISSION");
 		starMat.SetColor("_EmissionColor", starCol);
-
-
-		
 	}
 
 	public void UpdateVelocity(List<Body> Bodies)
