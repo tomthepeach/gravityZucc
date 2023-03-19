@@ -40,8 +40,9 @@ public class Body : MonoBehaviour
 	{
         netForce = Vector3.zero;
 
-		foreach (Body _body in Bodies)
+		for (int i=0; i< Bodies.Count; i++)
 		{
+			Body _body = Bodies[i];
 
 			if (_body != this)
 			{
@@ -49,7 +50,7 @@ public class Body : MonoBehaviour
 				float r = Vector3.Distance(transform.position, _body.transform.position);
 
 				// part of grav formula
-				float F_amp = (mass * _body.mass) / Mathf.Pow(r, 2);
+				float F_amp = (mass * _body.mass) / r * r;
 				
 				// dir 
 				Vector3 dir = Vector3.Normalize(_body.transform.position - transform.position);
