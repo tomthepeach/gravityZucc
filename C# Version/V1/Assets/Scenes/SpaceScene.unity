@@ -2959,10 +2959,10 @@ MonoBehaviour:
   m_TrackingStateInput:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Tracking State Input
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: d20e6e93-aa42-485d-ad4f-df10c6f36a48
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -4159,10 +4159,10 @@ MonoBehaviour:
     type: 3}
   bhPrefab: {fileID: 5173510674798946185, guid: 900668992900904498bcc2bcb23c9cc3,
     type: 3}
-  starCount: 200
-  clusterRadius: 500
+  starCount: 100
+  clusterRadius: 300
   clusterMass: 1000
-  bhMass: 1000
+  bhMass: 2000
 --- !u!1 &1717162957
 GameObject:
   m_ObjectHideFlags: 0

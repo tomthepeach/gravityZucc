@@ -18,6 +18,8 @@ public class Body : MonoBehaviour
 
 	private Vector3 position;
 
+	private Material starMat;
+
 
 	public void init(float inpmass, Vector3 inpinitialVelocity, float inpRadius, int bh)
 	{
@@ -30,7 +32,7 @@ public class Body : MonoBehaviour
 
 		double bv = ColourTools.bvFromMass((double)inpmass);
 		// Debug.Log(bv);
-		Material starMat = GetComponent<Renderer>().material;
+		starMat = GetComponent<Renderer>().material;
         Colour starCol = ColourTools.colourFromBV(bv);
 		starMat.EnableKeyword("_EMISSION");
 		starMat.SetColor("_EmissionColor", starCol);
@@ -65,7 +67,7 @@ public class Body : MonoBehaviour
 				float r = Vector3.Distance(this.position, _body.position);
 				// part of grav formula
 				Vector3 F = (mass * _body.mass) * ( this.position - _body.position) / (r * r * r);
-				netForce += F;
+				netForce += -F;
 			}
 		}
 		
@@ -83,15 +85,20 @@ public class Body : MonoBehaviour
 
 
 	// //Put this into update 
-	// public void ControlLuminosity(){ 
-	// 	Material starMat = GetComponent<Renderer>().material;
-	// 	float threshold = 1000f;
+	// public void UpdateLuminosity(){ 
 
-	// 	while (starMat._Luminosity > threshold){
-	// 		InvokeRepeating("reduceLumin",2);
+	// 	if (this.blackhole == 0){ // blackholes dont have shader, horrible doing this check every update though
+	// 		float baseLumin = 1000f;  // this should be a functino of the star's mass. and should be a public varible tht is updated on collision rather than calc-ed at every update
+	// 		float lumin = starMat.GetFloat("_Luminosity"); // this should be publiv var too
+
+	// 		if ( lumin > baseLumin){ //reduce by an exponetial amount
+	// 			lumin /= 2;
+	// 			starMat.SetFloat("_Luminosity", lumin);
+	// 		}
+
 	// 	}
 
 	// }
 
-
+	
 }

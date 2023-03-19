@@ -42,6 +42,7 @@ public class NBodySimulation : MonoBehaviour
         for (int i=0; i < bodiesLen; i++)
         {
             bodies[i].UpdatePosition();
+            // bodies[i].UpdateLuminosity();
         }
 
         List<Body> toDestroy = new List<Body>();
@@ -72,6 +73,12 @@ public class NBodySimulation : MonoBehaviour
                             this_body.transform.localScale = Vector3.one * this_body.radius * 2;
                             toDestroy.Add(other_body);
 
+                            // if (this_body.blackhole == 0){
+
+
+                            // }
+                            
+
                             
                         }
                         else // IF bodya.bh != bodyb.bh
@@ -85,10 +92,10 @@ public class NBodySimulation : MonoBehaviour
 
                                 double bv = ColourTools.bvFromMass((double)other_body.mass);
                                 Colour starCol = ColourTools.colourFromBV(bv);
-                                Material starMat = other_body.GetComponent<Renderer>().material;
-                                starMat.EnableKeyword("_EMISSION");
-                                starMat.SetColor("_EmissionColor", starCol);
-                                starMat.SetFloat("_Luminosity", 1000000f);
+                                // Material starMat = other_body.GetComponent<Renderer>().material;
+                                // starMat.EnableKeyword("_EMISSION");
+                                // starMat.SetColor("_EmissionColor", starCol);
+                                // starMat.SetFloat("_Luminosity", 1000000f);
                             
                             }
 
