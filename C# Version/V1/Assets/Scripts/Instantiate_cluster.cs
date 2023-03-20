@@ -22,18 +22,21 @@ public class Instantiate_cluster : MonoBehaviour
         GameObject bh = Instantiate(bhPrefab);
         bh.transform.position = Vector3.zero; 
         bh.GetComponent<Body>().init(bhMass, Vector3.zero, ApproxMath.schwarzschildRadius(bhMass), 1);
+        float massCheck = 0f;
 
         for (int i = 0; i < starCount; i++)
         {
             float scaler = ApproxMath.beta(2f, 2f*120f/(clusterMass/starCount));
             float inpmass = 0.1f + scaler * 120f;
             float starRadius = 15f * scaler;
+            massCheck += inpmass;
 
             Vector3 pos;
             pos = Random.insideUnitSphere * clusterRadius;//ApproxMath.boundedGaussian(0.0f, galaxyRadius/2.0f, 0.01f, galaxyRadius);
 
             Vector3 velDir = Vector3.Cross(pos, Vector3.up).normalized;
-            float velMag = ApproxMath.orbitalVelocity(clusterMass, pos.magnitude);
+            float correctedMass = (clusterMass + bhMass)*(pos.magnitude/clusterRadius);
+            float velMag = ApproxMath.orbitalVelocity(correctedMass, pos.magnitude);
             // float velMag = 0f;
 
 
@@ -42,5 +45,6 @@ public class Instantiate_cluster : MonoBehaviour
             star.GetComponent<Body>().init(inpmass, velMag * velDir, starRadius,0);
 
         }
+        Debug.Log("Mass check: " + massCheck);
     }
 }

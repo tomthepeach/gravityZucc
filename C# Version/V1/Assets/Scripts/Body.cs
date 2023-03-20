@@ -51,9 +51,9 @@ public class Body : MonoBehaviour
 				// distance between bodies
 				float r = Vector3.Distance(this.position, _body.position);
 				// part of grav formula
-				Vector3 F = (mass * _body.mass) * ( this.position - _body.position) / (r * r * r);
-				netForce += -F;
-			}
+				Vector3 F = -(mass * _body.mass) * (this.position - _body.position) / (r * r * r);
+				netForce += F;
+			}	
 		}
 		
 		netForce *= (Constants.BIGG);
