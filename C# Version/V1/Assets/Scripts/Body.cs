@@ -70,20 +70,23 @@ public class Body : MonoBehaviour
 
 
 	// //Put this into update 
-	// public void UpdateLuminosity(){ 
+	public void UpdateLuminosity(){ 
 
-	// 	if (this.blackhole == 0){ // blackholes dont have shader, horrible doing this check every update though
-	// 		float baseLumin = 1000f;  // this should be a functino of the star's mass. and should be a public varible tht is updated on collision rather than calc-ed at every update
-	// 		float lumin = starMat.GetFloat("_Luminosity"); // this should be publiv var too
+		Material starMat = GetComponent<Renderer>().material;
+        starMat.EnableKeyword("_EMISSION");
+		if (this.blackhole == 0){ // blackholes dont have shader, horrible doing this check every update though
+			float baseLumin = 10f;  // this should depend on the star's mass. and should be a public varible tht is updated on collision rather than calc-ed at every update
+			float lumin = starMat.GetFloat("_Luminosity"); // this should be publiv var too
 
-	// 		if ( lumin > baseLumin){ //reduce by an exponetial amount
-	// 			lumin /= 2;
-	// 			starMat.SetFloat("_Luminosity", lumin);
-	// 		}
+			if ( lumin > baseLumin){ //reduce by an exponetial amount (1/2)^x   //once a supernovas has happened it redueces down to the base lumin
+				lumin = lumin/2;
+				Debug.Log(lumin);
+				starMat.SetFloat("_Luminosity", lumin);
+			}
 
-	// 	}
+		}
 
-	// }
+	}
 
 	
 }
