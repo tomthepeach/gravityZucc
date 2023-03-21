@@ -41,6 +41,7 @@ public class Body : MonoBehaviour
 	public void UpdateVelocity(List<Body> Bodies)
 	{
         netForce = Vector3.zero;
+		position = transform.position;
 
 		for (int i=0; i< Bodies.Count; i++)
 		{
