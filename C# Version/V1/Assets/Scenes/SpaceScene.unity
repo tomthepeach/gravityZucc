@@ -4028,7 +4028,7 @@ MonoBehaviour:
   bhPrefab: {fileID: 5173510674798946185, guid: 900668992900904498bcc2bcb23c9cc3,
     type: 3}
   starCount: 120
-  clusterRadius: 1000
+  clusterRadius: 500
   clusterMass: 1000
   bhMass: 1000
 --- !u!1 &1717162957
