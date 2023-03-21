@@ -18,7 +18,7 @@ public class Body : MonoBehaviour
 
 	private Vector3 position;
 
-	private Material starMat;
+	public Material starMat;
 
 
 	public void init(float inpmass, Vector3 inpinitialVelocity, float inpRadius, int bh)
