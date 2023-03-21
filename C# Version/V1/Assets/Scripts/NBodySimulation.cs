@@ -84,7 +84,7 @@ public class NBodySimulation : MonoBehaviour
                                 starMat.SetColor("_EmissionColor", starCol);
                                 starMat.SetFloat("_Luminosity", 1000000f);
 
-                                float baseLumin = 10f;  // this should depend on the star's mass. and should be a public varible tht is updated on collision rather than calc-ed at every update
+                                float baseLumin = ApproxMath.massLuminosity(this_body.mass);  // this should depend on the star's mass. and should be a public varible tht is updated on collision rather than calc-ed at every update
                                 StartCoroutine(UpdateLuminosity(this_body, baseLumin));
                             }
                         }
@@ -154,7 +154,7 @@ public class NBodySimulation : MonoBehaviour
         while (lumin > baseLumin)
         { 
             lumin = lumin/2;
-            
+            Debug.Log(lumin);
             star.starMat.SetFloat("_Luminosity", lumin);
             yield return null;
         }

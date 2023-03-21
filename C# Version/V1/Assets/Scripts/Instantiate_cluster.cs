@@ -42,8 +42,9 @@ public class Instantiate_cluster : MonoBehaviour
 
             GameObject star = Instantiate(starPrefab);
             star.transform.position = pos;
-            star.GetComponent<Body>().init(inpmass, velMag * velDir, starRadius,0);
-
+            star_bod = star.GetComponent<Body>();
+            starbod.init(inpmass, velMag * velDir, starRadius,0);
+            star_bod.starMat.SetFloat("_Luminosity", ApproxMath.massLuminosity(inpmass));
         }
         Debug.Log("Mass check: " + massCheck);
     }
