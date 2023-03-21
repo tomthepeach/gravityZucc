@@ -35,7 +35,7 @@ public class Instantiate_cluster : MonoBehaviour
             pos = Random.insideUnitSphere * clusterRadius;//ApproxMath.boundedGaussian(0.0f, galaxyRadius/2.0f, 0.01f, galaxyRadius);
 
             Vector3 velDir = Vector3.Cross(pos, Vector3.up).normalized;
-            float correctedMass = (clusterMass + bhMass)*(pos.magnitude/clusterRadius);
+            float correctedMass = (clusterMass)*(pos.magnitude/clusterRadius);
             float velMag = ApproxMath.orbitalVelocity(correctedMass, pos.magnitude);
             // float velMag = 0f;
 
