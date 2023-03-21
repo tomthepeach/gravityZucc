@@ -17,7 +17,7 @@ public class Instantiate_cluster : MonoBehaviour
     void Awake()
     {
         //Uncomment this when building for headset
-        //starCount =  NumStars.numStars;
+        starCount =  MenuSettings.numStars;
 
         GameObject bh = Instantiate(bhPrefab);
         bh.transform.position = Vector3.zero; 
@@ -42,8 +42,8 @@ public class Instantiate_cluster : MonoBehaviour
 
             GameObject star = Instantiate(starPrefab);
             star.transform.position = pos;
-            star_bod = star.GetComponent<Body>();
-            starbod.init(inpmass, velMag * velDir, starRadius,0);
+            Body star_bod = star.GetComponent<Body>();
+            star_bod.init(inpmass, velMag * velDir, starRadius,0);
             star_bod.starMat.SetFloat("_Luminosity", ApproxMath.massLuminosity(inpmass));
         }
         Debug.Log("Mass check: " + massCheck);

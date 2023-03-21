@@ -17,6 +17,6 @@ public class ChangeNumStars : MonoBehaviour
     }
     void Update()
     {
-        SceneConstants.numStars = (int) mySlider.value;
+        MenuSettings.numStars = (int) mySlider.value;
     }
 }

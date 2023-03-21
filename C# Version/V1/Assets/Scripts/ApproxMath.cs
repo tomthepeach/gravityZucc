@@ -72,10 +72,10 @@ public class ApproxMath
 
     public static float massLuminosity(float mass)
     {
-        if(mass > 2) return mass;
+        if(mass > 2f) return mass;
         else
         {
-            return ApproxMath.pow(mass, 3f);
+            return (float) ApproxMath.pow(mass, 3f);
         }
     }
     

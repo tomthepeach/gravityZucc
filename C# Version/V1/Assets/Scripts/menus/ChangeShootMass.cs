@@ -17,6 +17,6 @@ public class ChangeShootMass : MonoBehaviour
     }
     void Update()
     {
-        SceneConstants.shootMass = (float) mySlider.value;
+        MenuSettings.shootMass = (float) mySlider.value;
     }
 }

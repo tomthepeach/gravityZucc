@@ -10,6 +10,6 @@ public class ChangeGunType : MonoBehaviour
 
         void Update()
     {
-        SceneConstants.type = (int) mySlider.value;
+        MenuSettings.type = (int) mySlider.value;
     }
 }

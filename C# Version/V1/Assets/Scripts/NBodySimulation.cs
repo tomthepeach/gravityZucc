@@ -11,11 +11,16 @@ public class NBodySimulation : MonoBehaviour
     public bool collectData = false;
 
     List<Body> bodies;
-    // Start is called before the first frame update
+     
+    
+
     DataController DC = new DataController();
 
     void Start()
-    {
+    {   
+        //When building
+        //timewarp = MenuSettings.timeWarp;
+
         Time.timeScale = timewarp;
         Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
 

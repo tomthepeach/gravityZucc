@@ -17,6 +17,6 @@ public class ChangeShootSpeed : MonoBehaviour
     }
     void Update()
     {
-        SceneConstants.shootSpeed = (int) mySlider.value;
+        MenuSettings.shootSpeed =  mySlider.value;
     }
 }
