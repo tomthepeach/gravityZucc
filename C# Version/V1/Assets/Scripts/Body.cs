@@ -76,6 +76,7 @@ public class Body : MonoBehaviour
 		Material starMat = GetComponent<Renderer>().material;
         starMat.EnableKeyword("_EMISSION");
 		if (this.blackhole == 0){ // blackholes dont have shader, horrible doing this check every update though
+		
 			float baseLumin = 10f;  // this should depend on the star's mass. and should be a public varible tht is updated on collision rather than calc-ed at every update
 			float lumin = starMat.GetFloat("_Luminosity"); // this should be publiv var too
 
