@@ -67,28 +67,28 @@ public class NBodySimulation : MonoBehaviour
                     {   
 
                         // For two bh and two stars
-                        if (this_body.blackhole == other_body.blackhole){
+                        if (this_body.blackhole == other_body.blackhole)
+                        {
                             Combine(this_body, other_body);
                             this_body.radius = ApproxMath.combinedSphereRadius(this_body.radius, other_body.radius);
                             this_body.transform.localScale = Vector3.one * this_body.radius * 2;
                             toDestroy.Add(other_body);
 
 
-                            if (this_body.blackhole == 0){
+                            if (this_body.blackhole == 0)
+                            {
                                 double bv = ColourTools.bvFromMass((double)other_body.mass);
                                 Colour starCol = ColourTools.colourFromBV(bv);
-
-                                
                                 Material starMat = this_body.GetComponent<Renderer>().material;
                                 starMat.EnableKeyword("_EMISSION");
                                 starMat.SetColor("_EmissionColor", starCol);
                                 starMat.SetFloat("_Luminosity", 1000000f);
 
+                                float baseLumin = 10f;  // this should depend on the star's mass. and should be a public varible tht is updated on collision rather than calc-ed at every update
+                                StartCoroutine(UpdateLuminosity(this_body, baseLumin));
                             }
-                            
-
-                            
                         }
+
                         else // IF bodya.bh != bodyb.bh
                         {
                             if(other_body.blackhole == 1)
@@ -97,16 +97,6 @@ public class NBodySimulation : MonoBehaviour
                                 toDestroy.Add(this_body);
                                 other_body.radius = ApproxMath.schwarzschildRadius(other_body.mass);
                                 other_body.transform.localScale = Vector3.one * other_body.radius * 2;
-
-                                // double bv = ColourTools.bvFromMass((double)other_body.mass);
-                                // Colour starCol = ColourTools.colourFromBV(bv);
-
-                                
-                                // Material starMat = other_body.GetComponent<Renderer>().material;
-                                // starMat.EnableKeyword("_EMISSION");
-                                // starMat.SetColor("_EmissionColor", starCol);
-                                // starMat.SetFloat("_Luminosity", 1000000f);
-                            
                             }
 
                             else
@@ -116,13 +106,6 @@ public class NBodySimulation : MonoBehaviour
                                 this_body.radius = ApproxMath.schwarzschildRadius(this_body.mass);
                                 this_body.transform.localScale = Vector3.one * this_body.radius * 2;
 
-                                double bv = ColourTools.bvFromMass((double)this_body.mass);
-                                Colour starCol = ColourTools.colourFromBV(bv);
-                                Material starMat = this_body.GetComponent<Renderer>().material;
-                                starMat.EnableKeyword("_EMISSION");
-                                starMat.SetColor("_EmissionColor", starCol);
-                                break;
-                                    
                             }
                         }
                     }
@@ -165,4 +148,15 @@ public class NBodySimulation : MonoBehaviour
         }
     }
 
+	IEnumerator UpdateLuminosity(Body star, float baseLumin)
+    {
+        float lumin = star.starMat.GetFloat("_Luminosity"); // this should be publiv var too
+        while (lumin > baseLumin)
+        { 
+            lumin = lumin/2;
+            Debug.Log(lumin);
+            starMat.SetFloat("_Luminosity", lumin);
+            yield return null;
+        }
+    }
 }
