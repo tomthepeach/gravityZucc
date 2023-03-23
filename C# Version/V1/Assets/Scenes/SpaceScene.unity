@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 6629719}
   m_HandleRect: {fileID: 163186045}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 300
   m_WholeNumbers: 0
   m_Value: 10
@@ -1483,8 +1483,8 @@ GameObject:
   - component: {fileID: 879881351}
   - component: {fileID: 879881350}
   - component: {fileID: 879881349}
-  - component: {fileID: 879881352}
   - component: {fileID: 879881353}
+  - component: {fileID: 879881354}
   m_Layer: 5
   m_Name: WristUICanvas
   m_TagString: Untagged
@@ -1580,18 +1580,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &879881352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879881347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f5413af7bbf54e4496f4d0522f1ab18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &879881353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1611,6 +1599,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &879881354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879881347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e9294258758934c8fe5b9edd429e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
 --- !u!1 &922657308
 GameObject:
   m_ObjectHideFlags: 0
@@ -2786,7 +2788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51214ece351f8e849a98bf5acda8f15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 6607865896316872678, guid: 60792419e9e6e2b429921c109055a49c,
+  gunPrefab: {fileID: 7558523262915080411, guid: fa5d3a1a2921aad4b86e3944c7a68089,
     type: 3}
   rightHand: {fileID: 1575259706}
 --- !u!1 &1336831599
@@ -3374,7 +3376,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 200
   m_WholeNumbers: 1
-  m_Value: 2
+  m_Value: 40
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -25,6 +25,8 @@ public class gun : MonoBehaviour
             GameObject star = Instantiate(starPrefab);
             star.transform.position = shootPoint.transform.position;
             star.GetComponent<Body>().init(inpmass, shootPoint.transform.forward * MenuSettings.shootSpeed, starRadius,0);
+            Body star_bod = star.GetComponent<Body>();
+            star_bod.starMat.SetFloat("_Luminosity", ApproxMath.massLuminosity(inpmass));
         }
     }
 }

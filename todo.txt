@@ -1,7 +1,4 @@
 TODO:
-- make _Luminosity proportional to mass
-- make function to spike _Luminosity after a collision
-- 
 
 
 
@@ -11,6 +8,8 @@ ALMOST DONE:
 
 
 DONE:
+- make _Luminosity proportional to mass
+- make function to spike _Luminosity after a collision
 - Add data collection for KE and PE if selected? https://bjmercier.medium.com/graphing-time-series-data-through-unity-463a35821f77
 - Get the galaxy rotating appropriately /
 - Sort out the units so that distances and masses are realistic /
