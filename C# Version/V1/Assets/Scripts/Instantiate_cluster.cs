@@ -18,6 +18,10 @@ public class Instantiate_cluster : MonoBehaviour
     {
         //Uncomment this when building for headset
         starCount =  MenuSettings.numStars;
+        clusterRadius = MenuSettings.clusterRadius;
+        clusterMass = MenuSettings.clusterMass;
+        bhMass = MenuSettings.BHMass;
+        //=-=-=-=--=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-
 
         GameObject bh = Instantiate(bhPrefab);
         bh.transform.position = Vector3.zero; 
