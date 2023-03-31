@@ -18,7 +18,8 @@ public class ChangeShootMass : MonoBehaviour
     }
     void Update()
     {
-        MenuSettings.shootMass = (int) MenuSettings.MassSliderExpo(mySlider.value);
+        // MenuSettings.shootMass = (int) MenuSettings.MassSliderExpo(mySlider.value);
+        MenuSettings.shootMass = (int)mySlider.value;
         
     }
 }
