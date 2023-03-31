@@ -6,22 +6,16 @@ using Colour = UnityEngine.Color;
 
 public class NBodySimulation : MonoBehaviour
 {
-    public float timewarp = 1f;
     public GameObject bhPrefab;
     public bool collectData = false;
 
     List<Body> bodies;
      
-    
-
     DataController DC = new DataController();
 
     void Start()
     {   
-        //When building
-        //timewarp = MenuSettings.timeWarp;
-
-        Time.timeScale = timewarp;
+        Time.timeScale = MenuSettings.timeWarp;
         Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
 
         Debug.Log("Time Scale: " + Time.timeScale);
@@ -82,7 +76,7 @@ public class NBodySimulation : MonoBehaviour
 
                             if (this_body.blackhole == 0)
                             {
-                                double bv = ColourTools.bvFromMass((double)other_body.mass);
+                                double bv = ColourTools.bvFromMass((double)this_body.mass);
                                 Colour starCol = ColourTools.colourFromBV(bv);
                                 Material starMat = this_body.GetComponent<Renderer>().material;
                                 starMat.EnableKeyword("_EMISSION");

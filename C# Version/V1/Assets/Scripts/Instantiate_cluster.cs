@@ -9,19 +9,12 @@ public class Instantiate_cluster : MonoBehaviour
     public GameObject starPrefab;
     public GameObject bhPrefab;
 
-    public int starCount = 100;
-    public float clusterRadius = 1000f;
-    public float clusterMass = 1000.0f;
-    public float bhMass = 100.0f;
-    
     void Awake()
     {
-        //Uncomment this when building for headset
-        starCount =  MenuSettings.numStars;
-        clusterRadius = MenuSettings.clusterRadius;
-        clusterMass = MenuSettings.clusterMass;
-        bhMass = MenuSettings.BHMass;
-        //=-=-=-=--=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-
+        int starCount =  MenuSettings.numStars;
+        float clusterRadius = MenuSettings.clusterRadius;
+        float clusterMass = MenuSettings.clusterMass;
+        float bhMass = MenuSettings.BHMass;
 
         GameObject bh = Instantiate(bhPrefab);
         bh.transform.position = Vector3.zero; 
