@@ -8,7 +8,7 @@ public class NBodySimulation : MonoBehaviour
 {
     public float timewarp = 1f;
     public GameObject bhPrefab;
-    public bool collectData = false;
+    public bool collectData = true;
 
     List<Body> bodies;
      
