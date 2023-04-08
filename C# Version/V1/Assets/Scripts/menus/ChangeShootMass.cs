@@ -12,11 +12,14 @@ public class ChangeShootMass : MonoBehaviour
     void Start()
     {
         mySlider.onValueChanged.AddListener((v) => {
-            mySliderText.text = v.ToString("0");
+            float s = MenuSettings.MassSliderExpo(v);
+            mySliderText.text = s.ToString("0");
         });
     }
     void Update()
     {
-        MenuSettings.shootMass = (float) mySlider.value;
+        // MenuSettings.shootMass = (int) MenuSettings.MassSliderExpo(mySlider.value);
+        MenuSettings.shootMass = (int)mySlider.value;
+        
     }
 }

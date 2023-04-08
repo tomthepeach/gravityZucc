@@ -6,22 +6,16 @@ using Colour = UnityEngine.Color;
 
 public class NBodySimulation : MonoBehaviour
 {
-    public float timewarp = 1f;
     public GameObject bhPrefab;
     public bool collectData = true;
 
     List<Body> bodies;
      
-    
-
     DataController DC = new DataController();
 
     void Start()
     {   
-        //When building
-        //timewarp = MenuSettings.timeWarp;
-
-        Time.timeScale = timewarp;
+        Time.timeScale = MenuSettings.timeWarp;
         Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
 
         Debug.Log("Time Scale: " + Time.timeScale);
@@ -47,12 +41,12 @@ public class NBodySimulation : MonoBehaviour
         for (int i=0; i < bodiesLen; i++)
         {
             bodies[i].UpdatePosition();
-            bodies[i].UpdateLuminosity();
+            // bodies[i].UpdateLuminosity(); ??
         }
 
         List<Body> toDestroy = new List<Body>();
         float avgRadius = 0;
-
+ 
         for(int i=0; i<bodiesLen;i++)
         {
             for (int j = i + 1; j < bodiesLen; j++)
@@ -82,7 +76,7 @@ public class NBodySimulation : MonoBehaviour
 
                             if (this_body.blackhole == 0)
                             {
-                                double bv = ColourTools.bvFromMass((double)other_body.mass);
+                                double bv = ColourTools.bvFromMass((double)this_body.mass);
                                 Colour starCol = ColourTools.colourFromBV(bv);
                                 Material starMat = this_body.GetComponent<Renderer>().material;
                                 starMat.EnableKeyword("_EMISSION");
@@ -129,12 +123,9 @@ public class NBodySimulation : MonoBehaviour
 
     void Combine(Body this_body, Body other_body){
 
-        float distance = Vector3.Distance(this_body.transform.position, other_body.transform.position);
-        Vector3 dir = (this_body.transform.position - other_body.transform.position).normalized;
         float totmass = this_body.mass + other_body.mass;
 
-        //this_body.transform.Translate(dir * distance*this_body.mass/(totmass));
-        this_body.transform.Translate(dir * distance/this_body.radius);
+        this_body.transform.position = (this_body.mass * this_body.position + other_body.mass * other_body.position)/totmass;
 
         this_body.velocity = (other_body.velocity*other_body.mass + this_body.velocity*this_body.mass)/(totmass);
         this_body.mass = totmass;

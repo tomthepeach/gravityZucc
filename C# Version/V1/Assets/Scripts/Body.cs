@@ -16,7 +16,7 @@ public class Body : MonoBehaviour
 
 	public float radius = 1;
 
-	private Vector3 position;
+	public Vector3 position;
 
 	public Material starMat;
 
