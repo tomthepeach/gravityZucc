@@ -19,6 +19,10 @@ public class Body : MonoBehaviour
 	public Vector3 position;
 
 	public Material starMat;
+	
+	public float potentialEnergy;
+	
+	public float kineticEnergy;
 
 
 	public void init(float inpmass, Vector3 inpinitialVelocity, float inpRadius, int bh)
@@ -39,8 +43,9 @@ public class Body : MonoBehaviour
 	}
 
 	public void UpdateVelocity(List<Body> Bodies)
-	{
-        netForce = Vector3.zero;
+	{	
+		potentialEnergy = 0;
+        	netForce = Vector3.zero;
 		position = transform.position;
 
 		for (int i=0; i< Bodies.Count; i++)
@@ -53,14 +58,17 @@ public class Body : MonoBehaviour
 				float r = Vector3.Distance(this.position, _body.position);
 				// part of grav formula
 				Vector3 F = -(mass * _body.mass) * (this.position - _body.position) / (r * r * r);
+				potentialEnergy += - Constants.BIGG * this.mass * _body.mass / r.magnitude;
 				netForce += F;
 			}	
 		}
 		
 		netForce *= (Constants.BIGG);
 
-        velocity += netForce/mass * Time.fixedDeltaTime;
-             
+        	velocity += netForce/mass * Time.fixedDeltaTime;
+             	
+		kineticEnergy = 0.5 * 
+		
 	}
 
 	public void UpdatePosition()
