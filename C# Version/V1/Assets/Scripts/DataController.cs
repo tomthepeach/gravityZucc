@@ -44,6 +44,8 @@ public class DataController
         List<Vector3> vel = new List<Vector3>();
         List<Vector3> force = new List<Vector3>();
         List<float> mass = new List<float>();
+        List<float>ke = new List<float>();
+        List<float>pe = new List<float>();
 
    
    public void AddData(float time, List<Body> bodies)
@@ -55,11 +57,15 @@ public class DataController
             vel.Add(body.velocity);
             force.Add(body.netForce);
             mass.Add(body.mass);
+            ke.Add(body.kineticEnergy);
+            pe.Add(body.potentialEnergy);
         }
 
         positions.Add(pos);
         velocities.Add(vel);
         forces.Add(force);
         masses.Add(mass);
+        kinetics.Add(ke);
+        potentials.Add(pe);
     }
 }
