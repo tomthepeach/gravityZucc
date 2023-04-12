@@ -133,6 +133,7 @@ public class NBodySimulation : MonoBehaviour
 
     void logData()
     {
+        Debug.Log("Logging Data");
         DC.LogData(Time.time,bodies);
     }
 
