@@ -50,9 +50,6 @@ public class DataController
         List<float>ke = new List<float>();
         List<float>pe = new List<float>();
 
-   
-   public void AddData(float time, List<Body> bodies)
-     {
 
         foreach (Body body in bodies)
         {
@@ -60,14 +57,15 @@ public class DataController
             vel.Add(body.velocity);
             force.Add(body.netForce);
             mass.Add(body.mass);
-            
+            ke.Add(body.kineticEnergy);
+            pe.Add(body.potentialEnergy);
         }
 
         positions.Add(pos);
         velocities.Add(vel);
         forces.Add(force);
         masses.Add(mass);
-        kinetics.Add(ke);
-        potentials.Add(pe);
+        kes.Add(ke);
+        pes.Add(pe);
     }
 }
