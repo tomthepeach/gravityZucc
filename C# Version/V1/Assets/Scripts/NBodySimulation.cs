@@ -150,7 +150,7 @@ public class NBodySimulation : MonoBehaviour
         while (lumin > baseLumin)
         { 
             lumin = lumin/2;
-            Debug.Log(lumin);
+            // Debug.Log(lumin);
             star.starMat.SetFloat("_Luminosity", lumin);
             yield return null;
         }
