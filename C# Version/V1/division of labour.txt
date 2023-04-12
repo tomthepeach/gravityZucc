@@ -1,0 +1,11 @@
+Using Unity - wrote own physics, only used rendering.
+used a unity gun asset
+used some algos for our maths scripts
+
+
+
+
+Tom - Graphics / shaders / skybox / data collector, 
+
+
+George  - interaction such as UI menu, Star gun, wrist UI, Supernovae
