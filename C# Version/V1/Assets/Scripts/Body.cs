@@ -59,7 +59,7 @@ public class Body : MonoBehaviour
 				// part of grav formula
 				Vector3 F = -(mass * _body.mass) * (this.position - _body.position) / (r * r * r);
 
-				potentialEnergy += - Constants.BIGG * this.mass * _body.mass / r.magnitude;
+				potentialEnergy += - Constants.BIGG * mass * _body.mass / r;
 				netForce += F;
 			}	
 		}
@@ -68,7 +68,7 @@ public class Body : MonoBehaviour
 
         velocity += netForce/mass * Time.fixedDeltaTime;
              	
-		kineticEnergy = 0.5 * mass * velocity * velocity;  
+		kineticEnergy = 0.5f * mass * velocity.sqrMagnitude;  
 		
 	}
 
