@@ -14,9 +14,6 @@ public class DataController
     public List<List<float>> kes = new List<List<float>>();
 
     public List<float> times = new List<float>();
-    public List<float> potentials = new List<float>();
-    public List<float> kinetics = new List<float>();
-
  
     public void SaveData()
     {
