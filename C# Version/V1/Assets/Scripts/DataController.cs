@@ -10,6 +10,9 @@ public class DataController
     public List<List<Vector3>> forces = new List<List<Vector3>>();
 
     public List<List<float>> masses = new List<List<float>>();
+    public List<List<float>> pes = new List<List<float>>();
+    public List<List<float>> kes = new List<List<float>>();
+
     public List<float> times = new List<float>();
 
     // For fps vs starcount graphs
@@ -23,13 +26,13 @@ public class DataController
 
         // Save data to file
         StreamWriter writer = new StreamWriter("sim_data_" + currentDateTime.ToString("yyyy-MM-dd_HH-mm-ss") + ".csv");
-        writer.WriteLine("time,index,mass,x,y,z,vx,vy,vz,fx,fy,fz");
+        writer.WriteLine("time,index,mass,x,y,z,vx,vy,vz,fx,fy,fz,ke,pe");
 
         for(int i=0; i < times.Count; i++)
         {
             for (int j = 0; j < masses[i].Count; j++)
             {
-                string line = string.Join(",", times[i], j, masses[i][j], positions[i][j][0], positions[i][j][1], positions[i][j][2], velocities[i][j][0], velocities[i][j][1], velocities[i][j][2], forces[i][j][0], forces[i][j][1], forces[i][j][2]);
+                string line = string.Join(",", times[i], j, masses[i][j], positions[i][j][0], positions[i][j][1], positions[i][j][2], velocities[i][j][0], velocities[i][j][1], velocities[i][j][2], forces[i][j][0], forces[i][j][1], forces[i][j][2], kes[i][j], pes[i][j]);
                 writer.WriteLine(line);
             }
         }
@@ -75,6 +78,7 @@ public class DataController
             vel.Add(body.velocity);
             force.Add(body.netForce);
             mass.Add(body.mass);
+            
         }
 
         positions.Add(pos);

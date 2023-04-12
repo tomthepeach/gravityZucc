@@ -45,7 +45,7 @@ public class Body : MonoBehaviour
 	public void UpdateVelocity(List<Body> Bodies)
 	{	
 		potentialEnergy = 0;
-        	netForce = Vector3.zero;
+        netForce = Vector3.zero;
 		position = transform.position;
 
 		for (int i=0; i< Bodies.Count; i++)
@@ -58,6 +58,7 @@ public class Body : MonoBehaviour
 				float r = Vector3.Distance(this.position, _body.position);
 				// part of grav formula
 				Vector3 F = -(mass * _body.mass) * (this.position - _body.position) / (r * r * r);
+
 				potentialEnergy += - Constants.BIGG * this.mass * _body.mass / r.magnitude;
 				netForce += F;
 			}	
@@ -65,9 +66,9 @@ public class Body : MonoBehaviour
 		
 		netForce *= (Constants.BIGG);
 
-        	velocity += netForce/mass * Time.fixedDeltaTime;
+        velocity += netForce/mass * Time.fixedDeltaTime;
              	
-		kineticEnergy = 0.5 * 
+		kineticEnergy = 0.5 * mass * velocity * velocity;  
 		
 	}
 
