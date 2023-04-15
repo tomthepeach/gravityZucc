@@ -6,7 +6,7 @@ using UnityEngine;
 public class MenuSettings : MonoBehaviour
 {
     public static int numStars = 120;
-    public static float timeWarp = 1f;
+    public static float timeWarp = 20f;
     public static float shootSpeed = 100;
     public static float shootMass = 10f;
     public static int type = 0;
