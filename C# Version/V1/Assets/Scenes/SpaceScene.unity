@@ -1178,7 +1178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bhPrefab: {fileID: 5173510674798946185, guid: 900668992900904498bcc2bcb23c9cc3,
     type: 3}
-  collectData: 0
 --- !u!4 &278253148
 Transform:
   m_ObjectHideFlags: 0
@@ -4357,6 +4356,8 @@ MonoBehaviour:
     type: 3}
   bhPrefab: {fileID: 5173510674798946185, guid: 900668992900904498bcc2bcb23c9cc3,
     type: 3}
+  skybox1: {fileID: 2100000, guid: 860a66ca4259b384f9ec01b687f71c3c, type: 2}
+  skybox2: {fileID: 2100000, guid: 9a0e9627d8fa9a1479e63f100f7e316e, type: 2}
 --- !u!1 &1717162957
 GameObject:
   m_ObjectHideFlags: 0

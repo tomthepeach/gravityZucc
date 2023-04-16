@@ -8,6 +8,8 @@ public class Instantiate_cluster : MonoBehaviour
 {
     public GameObject starPrefab;
     public GameObject bhPrefab;
+    public Material skybox1;
+    public Material skybox2;
 
     void Awake()
     {
@@ -15,6 +17,14 @@ public class Instantiate_cluster : MonoBehaviour
         float clusterRadius = MenuSettings.clusterRadius;
         float clusterMass = MenuSettings.clusterMass;
         float bhMass = MenuSettings.BHMass;
+        if (MenuSettings.skybox == 0)
+        {
+            RenderSettings.skybox = skybox1;
+        }
+        else
+        {
+            RenderSettings.skybox = skybox2;
+        }
 
         GameObject bh = Instantiate(bhPrefab);
         bh.transform.position = Vector3.zero; 
