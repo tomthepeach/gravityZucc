@@ -7,7 +7,7 @@ using Colour = UnityEngine.Color;
 public class NBodySimulation : MonoBehaviour
 {
     public GameObject bhPrefab;
-    private bool collectData = true;
+    private bool collectData = false;
 
     List<Body> bodies;
      

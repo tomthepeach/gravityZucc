@@ -40,6 +40,7 @@ public class Body : MonoBehaviour
         Colour starCol = ColourTools.colourFromBV(bv);
 		starMat.EnableKeyword("_EMISSION");
 		starMat.SetColor("_EmissionColor", starCol);
+		starMat.SetFloat("_Luminosity", ApproxMath.massLuminosity(inpmass));
 	}
 
 	public void UpdateVelocity(List<Body> Bodies)
