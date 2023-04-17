@@ -51,7 +51,7 @@ public class Instantiate_cluster : MonoBehaviour
             star.transform.position = pos;
             Body star_bod = star.GetComponent<Body>();
             star_bod.init(inpmass, velMag * velDir, starRadius,0);
-            star_bod.starMat.SetFloat("_Luminosity", ApproxMath.massLuminosity(inpmass));
+            
         }
         Debug.Log("Mass check: " + massCheck);
     }
