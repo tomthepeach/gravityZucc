@@ -31,3 +31,7 @@ ax.plot(t_ener2["te"], label="Timewarp=20")
 # force to a velcoity, this simulation uses the euler method, which has accumaulaes errors which are proportional to the size of the timestep, this explains the slow drift between collisions 
 # Th second is due to collisons, this can be seen in the sharp jumps and spikes
 # %%
+
+
+
+# %%
