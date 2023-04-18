@@ -14,7 +14,7 @@ public class NBodySimulation : MonoBehaviour
     DataController DC = new DataController();
 
     void Start()
-    {   
+    {           
         Time.timeScale = MenuSettings.timeWarp;
         Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
 
