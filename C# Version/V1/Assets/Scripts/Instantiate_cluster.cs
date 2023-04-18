@@ -17,7 +17,7 @@ public class Instantiate_cluster : MonoBehaviour
         float clusterRadius = MenuSettings.clusterRadius;
         float clusterMass = MenuSettings.clusterMass;
         float bhMass = MenuSettings.BHMass;
-        if (MenuSettings.skybox == 0)
+        if (MenuSettings.skybox == 1)
         {
             RenderSettings.skybox = skybox1;
         }

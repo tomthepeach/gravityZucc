@@ -77,3 +77,7 @@ ax3.legend()
 # to keep the varibales of the simulations within reasonable bounds
 
 # %%
+
+
+
+
