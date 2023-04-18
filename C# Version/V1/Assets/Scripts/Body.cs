@@ -40,12 +40,13 @@ public class Body : MonoBehaviour
         Colour starCol = ColourTools.colourFromBV(bv);
 		starMat.EnableKeyword("_EMISSION");
 		starMat.SetColor("_EmissionColor", starCol);
+		starMat.SetFloat("_Luminosity", ApproxMath.massLuminosity(inpmass));
 	}
 
 	public void UpdateVelocity(List<Body> Bodies)
 	{	
 		potentialEnergy = 0;
-        	netForce = Vector3.zero;
+        netForce = Vector3.zero;
 		position = transform.position;
 
 		for (int i=0; i< Bodies.Count; i++)
@@ -55,9 +56,9 @@ public class Body : MonoBehaviour
 			if (_body != this)
 			{
 				// distance between bodies
-				float r = Vector3.Distance(this.position, _body.position);
+				float r = Vector3.Distance(position, _body.position);
 				// part of grav formula
-				Vector3 F = -(mass * _body.mass) * (this.position - _body.position) / (r * r * r);
+				Vector3 F = -(mass * _body.mass) * (position - _body.position) / (r * r * r);
 
 				potentialEnergy += - 0.5f * Constants.BIGG * mass * _body.mass / r; // halving since we are doing this calc twice for each body
 				netForce += F;

@@ -7,14 +7,14 @@ using Colour = UnityEngine.Color;
 public class NBodySimulation : MonoBehaviour
 {
     public GameObject bhPrefab;
-    private bool collectData = true;
+    private bool collectData = false;
 
     List<Body> bodies;
      
     DataController DC = new DataController();
 
     void Start()
-    {   
+    {           
         Time.timeScale = MenuSettings.timeWarp;
         Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
 
