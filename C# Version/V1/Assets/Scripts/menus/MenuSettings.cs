@@ -14,7 +14,7 @@ public class MenuSettings : MonoBehaviour
     public static float clusterMass = 1000f;
     public static float clusterRadius = 500f;
 
-    public static int skybox = 0;
+    public static int skybox = 1;
 
     public static double e = 2.71828;
     public static float MassSliderExpo(float x){
