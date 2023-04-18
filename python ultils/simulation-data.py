@@ -54,8 +54,6 @@ ax2.plot(t_ener2["te"], label="Timewarp=20")
 # %%
 
 
-<<<<<<< HEAD
-=======
 df3 = pd.read_csv(r"C:\Users\tom\Desktop\gravityZucc\C# Version\V1\twobody.csv")
 
 t_ener3 = df3.groupby("time")[["ke","pe"]].sum()
@@ -97,6 +95,5 @@ ax4.plot(t_ener4["te"], label="Total Energy")
 
 
 
->>>>>>> d0bef356366fba4496452690f8d677f5467e7064
 
 # %%
