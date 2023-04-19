@@ -1,25 +1,23 @@
 # %%
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt 
+
 
 sns.set_theme(context="paper", style="whitegrid")
 
+smass = 1.989e30
+au = 1.496e11
+year_S = 3.154e7
+
+energy_factor = smass*au*au/(year_S*year_S)
 
 df =  pd.read_csv(r"C:\Users\tom\Desktop\gravityZucc\C# Version\V1\standard.csv")
 df
 # %%
-t_ener = df.groupby("time")[["ke","pe"]].sum()
+t_ener = df.groupby("time")[["ke","pe"]].sum()*energy_factor
 t_ener["te"] = t_ener["ke"] + t_ener["pe"]
 
-
-# %%
-df2 =pd.read_csv(r"C:\Users\tom\Desktop\gravityZucc\C# Version\V1\timewarpedx20.csv")
-
-t_ener2 = df2.groupby("time")[["ke","pe"]].sum()
-t_ener2["te"] = t_ener2["ke"] + t_ener2["pe"]
-
-
-import matplotlib.pyplot as plt 
 
 fig1, ax1 = plt.subplots(figsize=(5.78851,4))
 
@@ -36,6 +34,11 @@ ax1.legend()
 fig1.savefig("Energy plot for 1x",dpi=600,bbox_inches = 'tight')
 
 # %%
+df2 =pd.read_csv(r"C:\Users\tom\Desktop\gravityZucc\C# Version\V1\timewarpedx20.csv")
+
+t_ener2 = df2.groupby("time")[["ke","pe"]].sum() * energy_factor
+t_ener2["te"] = t_ener2["ke"] + t_ener2["pe"]
+
 fig2, ax2 = plt.subplots(figsize=(7,5))
 
 ax2.plot(t_ener["te"], label="Timewarp = 1")
@@ -75,5 +78,22 @@ ax3.legend()
 # As such we chose the foollowing units: Distance in AU, Mass in Solar Masses, Time in years, and Velocity in AU/Year
 # Converting the gravaitional constant to these units gives us ~40.0 instead of the real value of 6.674e-11 great!
 # to keep the varibales of the simulations within reasonable bounds
+
+# %%
+df4 = pd.read_csv(r"C:\Users\tom\Desktop\gravityZucc\C# Version\V1\lesscollisions.csv")
+
+
+t_ener4 = df4.groupby("time")[["ke","pe"]].sum()
+t_ener4["te"] = t_ener4["ke"] + t_ener4["pe"]
+fig4, ax4 = plt.subplots()
+
+ax4.plot(t_ener4["te"], label="Total Energy")
+
+
+
+
+
+
+
 
 # %%
