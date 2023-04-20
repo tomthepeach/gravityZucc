@@ -12,7 +12,7 @@ year_S = 3.154e7
 
 energy_factor = smass*au*au/(year_S*year_S)
 
-df =  pd.read_csv(r"C:\Users\tompe\Desktop\Final project code\C# Version\V1\random1x.csv")
+df =  pd.read_csv(r"data\random1x.csv")
 df
 # %%
 t_ener = df.groupby("time")[["ke","pe"]].sum()*energy_factor
@@ -33,7 +33,12 @@ ax1.legend()
 
 fig1.savefig("Energy plot for 1x",dpi=600,bbox_inches = 'tight')
 
+# %%
+
 fig1_2, ax1_2 = plt.subplots(figsize=(5.78851,4))
+collisions = (df.groupby("time").count().diff() != 0).sum(axis=1).shift(-1)[1:]
+
+
 
 ax1_2.plot(t_ener.index, t_ener["te"], label="Total Energy")
 # ax1_2.set_xlim(0, t_ener.index.max())
@@ -42,9 +47,14 @@ plt.setp(ax1_2.spines.values(), linewidth=1.5, color="grey")
 ax1_2.set_xlabel("Time (Years)")
 ax1_2.set_ylabel("Energy (Joules)")
 ax1_2.legend()
+for col in collisions.index:
+    if collisions[col] == 13:
+        ax1_2.axvline(col, c="red", ls="--", lw=1, alpha=0.5)
+
 
 fig1_2.savefig("total Energy plot for 1x",dpi=600,bbox_inches = 'tight')
 
+# collisions
 # %%
 
 import numpy as np
