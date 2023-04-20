@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Colour = UnityEngine.Color;
+using Random = UnityEngine.Random;
+
 
 
 public class NBodySimulation : MonoBehaviour
 {
     public GameObject bhPrefab;
-    private bool collectData = false;
+    private bool collectData = true;
 
     List<Body> bodies;
      
     DataController DC = new DataController();
 
     void Start()
-    {           
+    {
+        Random.InitState(1);
+
         Time.timeScale = MenuSettings.timeWarp;
         Time.fixedDeltaTime = Time.fixedDeltaTime * Time.timeScale;
 

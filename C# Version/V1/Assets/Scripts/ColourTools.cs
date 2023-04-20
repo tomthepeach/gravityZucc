@@ -10,9 +10,9 @@ public class ColourTools
 
         double bv;
         if (mass < 0.1) mass = 0.1;
-        if (mass > 120) mass = 120;
+        if (mass > 20) mass = 20;
         // map mass to bv linearly
-        bv = 2.0 - (2.0 + 0.4) * (mass - 0.1) / (120 - 0.1);
+        bv = 2.0 - (2.0 + 0.4) * mass / 20 ;
 
         return bv;
     }
