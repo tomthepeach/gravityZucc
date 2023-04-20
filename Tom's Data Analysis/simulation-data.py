@@ -58,8 +58,8 @@ fig1_2.savefig("total Energy plot for 1x",dpi=600,bbox_inches = 'tight')
 # %%
 
 import numpy as np
-df2 = pd.read_csv(r"C:\Users\tompe\Desktop\Final project code\C# Version\V1\randlowcol1x.csv")
-df3 =pd.read_csv(r"C:\Users\tompe\Desktop\Final project code\C# Version\V1\randlowcol20x.csv")
+df2 = pd.read_csv(r"data\randlowcol1x.csv")
+df3 =pd.read_csv(r"data\randlowcol20x.csv")
 
 t_ener2 = df2.groupby("time")[["ke","pe"]].sum() * energy_factor
 t_ener2["te"] = t_ener2["ke"] + t_ener2["pe"]
@@ -108,7 +108,7 @@ fig2.savefig("Total engergy leakge comparison",dpi=600,bbox_inches = 'tight')
 # %%
 
 
-df3 = pd.read_csv(r"C:\Users\tom\Desktop\gravityZucc\C# Version\V1\twobody.csv")
+df3 = pd.read_csv(r"data\twobody.csv")
 
 t_ener3 = df3.groupby("time")[["ke","pe"]].sum()
 t_ener3["te"] = t_ener3["ke"] + t_ener3["pe"]
@@ -123,7 +123,13 @@ ax3.set_ylabel("Energy (Joules)")
 
 
 ax3.legend()
+# %%
 
+leak1 = b/a *100
+leak2  =b2/a2 *100
+
+print(f"{leak1:.2e}", f"{leak2:.2e}")
+print(leak2/leak1)
 # %%
 
 # Astornomical values are very large, for example 1 solar mass is 1.989e30 kg. the
@@ -149,5 +155,37 @@ ax4.plot(t_ener4["te"], label="Total Energy")
 
 
 
+
+# %%
+
+from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes 
+from mpl_toolkits.axes_grid1.inset_locator import mark_inset
+
+twobody = pd.read_csv(r"data\randomtwobod.csv")
+
+t_ener5 = twobody.groupby("time")[["ke","pe"]].sum() * energy_factor
+t_ener5["te"] = t_ener5["ke"] + t_ener5["pe"]
+fig5, ax5 = plt.subplots( figsize=(5.78851,4))
+
+
+alt = ax5.twinx()
+
+ke = ax5.plot(t_ener5["ke"], label="Kinetic Energy")
+
+gpe = ax5.plot(t_ener5["pe"], label="Gravitational Potential Energy")
+ax5.set_xlabel("Time (Years)")
+ax5.set_ylabel("Energy (Joules)")
+
+
+tot =alt.plot(t_ener5["te"], label="Total Energy",c="green")
+alt.set_ylabel("Total Energy (Joules)", c="green")
+plt.setp(alt.spines.values(), linewidth=1.5, color="grey")
+
+ax5.grid(False)
+
+ax5.legend()  
+
+
+plt.savefig("twobody",dpi=600,bbox_inches = 'tight')
 
 # %%
